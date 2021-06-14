@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Directive, OnInit, ViewChild } from '@angular/core';
+import { LoginComponent } from '../component/login.component';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'login-container',
+  templateUrl: './login.container.html',
+  styleUrls: ['./login.container.scss'],
+  viewProviders: [LoginComponent]
 })
-export class LoginComponent implements OnInit {
+export class LoginContainer implements OnInit {
 
   constructor() { }
 
