@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  someShitData = "blabla";
+  someShitData: String = "blabla";
   constructor() { }
 
   ngOnInit(): void {
