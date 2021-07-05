@@ -1,2 +1,11 @@
-<p>sdfsdfg</p>
-
+<form class="example-container" [formGroup]="form" (ngSubmit)="ngOnSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Color</mat-label>
+      <input matInput type="text" placeholder="login" [formControl]="login">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Font size</mat-label>
+      <input matInput type="password" placeholder="hasło" [formControl]="password">
+    </mat-form-field>
+</form>
