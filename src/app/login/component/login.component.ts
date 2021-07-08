@@ -9,7 +9,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-
   constructor(private fb: FormBuilder){}
 
   ngOnInit(): void {
@@ -20,7 +19,7 @@ export class LoginComponent implements OnInit {
     
   }
   onSubmit(): void{
-    console.log(this.form.value);
+    //@Output()  = new EventEmitter<form>();
   }
 
 }
