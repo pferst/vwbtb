@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
+  //@Output() loginRequest = new EventEmitter<form>();
   constructor(private fb: FormBuilder){}
 
   ngOnInit(): void {
@@ -16,10 +17,9 @@ export class LoginComponent implements OnInit {
       login: [null, Validators.required],
       password: [null, Validators.required]
     })
-    
   }
   onSubmit(): void{
-    //@Output()  = new EventEmitter<form>();
+    //this.loginRequest.emit(this.form);
   }
 
 }
