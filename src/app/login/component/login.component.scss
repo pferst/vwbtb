@@ -1,0 +1,23 @@
+form{
+    position: absolute;
+    text-align:center;
+    top: 35vh;
+    width: 16vw;
+    left: 42vw;
+    right: 42vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+
+    box-shadow: 0 1vw 3vh 0 rgba(76, 111, 228, 0.2), 0 2vw 6vh 0 rgba(76, 111, 228, 0.19);
+    border-radius: 3%;
+}
+.scalableInput{
+    width: 10vw;
+    height: 1vh;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+.submitButton{
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}

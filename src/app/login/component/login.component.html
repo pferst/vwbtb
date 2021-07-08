@@ -1,11 +1,13 @@
-<form class="example-container" [formGroup]="form" (ngSubmit)="ngOnSubmit()">
-    <mat-form-field appearance="fill">
-      <mat-label>Color</mat-label>
-      <input matInput type="text" placeholder="login" [formControl]="login">
+<form class="example-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="scalableInput">
+      <mat-label>Login</mat-label>
+      <input matInput type="text" placeholder="login" formControlName="login">
     </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Font size</mat-label>
-      <input matInput type="password" placeholder="hasło" [formControl]="password">
+    <br/>
+    <mat-form-field appearance="fill" class="scalableInput">
+      <mat-label>Hasło</mat-label>
+      <input matInput type="password" placeholder="hasło" formControlName="password">
     </mat-form-field>
+    <br/>
+    <button mat-stroked-button type="submit" [disabled]="!form.valid" class="submitButton">Zaloguj</button>
 </form>
