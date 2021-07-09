@@ -28,6 +28,7 @@ import { LoginComponent } from './login/component/login.component';
     ReactiveFormsModule,
     MatButtonModule,
     MatToolbarModule,
+    MatFormFieldModule,
     MatSelectModule
   ],
   providers: [],
