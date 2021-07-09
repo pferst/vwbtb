@@ -11,9 +11,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginContainer } from './login/container/login.container';
 import { LoginComponent } from './login/component/login.component';
-import { BugReportContainer } from './bugsReport/container/bug-report/bug-report.container';
-import { BugFormComponent } from './bugsReport/component/bug-form/bug-form.component';
-import { PicViewComponent } from './bugsReport/component/pic-view/pic-view.component';
 
 
 
@@ -21,10 +18,7 @@ import { PicViewComponent } from './bugsReport/component/pic-view/pic-view.compo
   declarations: [
     AppComponent,
     LoginContainer,
-    LoginComponent,
-    BugReportContainer,
-    BugFormComponent,
-    PicViewComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
