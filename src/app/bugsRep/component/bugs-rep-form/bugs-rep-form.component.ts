@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-bugs-rep-form',
@@ -9,7 +9,6 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 export class BugsRepFormComponent implements OnInit {
 
   form: FormGroup;
-  mode = new FormControl('push');
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {

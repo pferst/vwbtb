@@ -1,4 +1,10 @@
 <mat-sidenav-container class="sideNav"><!-- (backdropClick)="sidenav.close()" -->
-<app-bugs-rep-form></app-bugs-rep-form>
-<app-pic-view></app-pic-view>
+    <mat-sidenav #sidenav opened mode="push" disableClose>
+        <p><button mat-button (click)="sidenav.close()">Zamknij</button></p>
+        <app-bugs-rep-form></app-bugs-rep-form>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <p><button mat-button (click)="sidenav.open()">Open</button></p>
+        <app-pic-view></app-pic-view>
+    </mat-sidenav-content>
 </mat-sidenav-container>
