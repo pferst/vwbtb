@@ -8,8 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginContainer } from './login/container/login.container';
 import { LoginComponent } from './login/component/login.component';
@@ -38,7 +38,8 @@ import { PicViewComponent } from './bugsRep/component/pic-view/pic-view.componen
     MatToolbarModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatDatepickerModule,
+    MatSidenavModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,7 @@
-<form class="example-container">
+<mat-sidenav-container class="sideNav" (backdropClick)="sidenav.close()">
+  <mat-sidenav #sidenav opened mode="side" position="end" (keydown.escape)="sidenav.close()" disableClose>
+    <p><button mat-button (click)="sidenav.close()">Zamknij</button></p>
+  <form [formGroup]="form">
     <mat-form-field appearance="fill">
         <mat-label>ID pojazdu</mat-label>
         <input matInput type="text" placeholder="ID pojazdu" formControlName="id">
@@ -24,7 +27,7 @@
   </mat-form-field><br/>
 
   <mat-form-field appearance="fill">
-    <mat-label>Wybierz Rodzaj błędu</mat-label>
+     <mat-label>Wybierz Rodzaj błędu</mat-label>
     <mat-select>
       <mat-option>--------</mat-option>
       <mat-option value="option1">Option 1</mat-option>
@@ -32,7 +35,10 @@
       <mat-option value="option3">Option 3</mat-option>
     </mat-select>
   </mat-form-field><br/>
-
-  <!-- tu powinien być zasadniczo time-picker ale wszystkie są cholernie brzydkie -->
-
-</form>
+  <!-- tu powinien być zasadniczo time-picker ale wszystkie są cholernie brzydkie, a jak są ładne to nie umiem ich zaimplementować (np. ngx) -->
+  </form>
+  </mat-sidenav>
+  <mat-sidenav-content mode="side" position="end">
+    <p><button mat-button (click)="sidenav.open()">Open</button></p>
+  </mat-sidenav-content>
+</mat-sidenav-container>
