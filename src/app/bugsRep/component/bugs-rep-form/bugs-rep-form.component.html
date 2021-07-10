@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sideNav" (backdropClick)="sidenav.close()">
-  <mat-sidenav #sidenav opened mode="side" position="end" (keydown.escape)="sidenav.close()" disableClose>
+  <mat-sidenav #sidenav opened mode="side" position="end" disableClose>
     <p><button mat-button (click)="sidenav.close()">Zamknij</button></p>
-  <form [formGroup]="form">
+  <form [formGroup]="form" class = "sideForm">
     <mat-form-field appearance="fill">
         <mat-label>ID pojazdu</mat-label>
         <input matInput type="text" placeholder="ID pojazdu" formControlName="id">
@@ -38,7 +38,7 @@
   <!-- tu powinien być zasadniczo time-picker ale wszystkie są cholernie brzydkie, a jak są ładne to nie umiem ich zaimplementować (np. ngx) -->
   </form>
   </mat-sidenav>
-  <mat-sidenav-content mode="side" position="end">
+  <mat-sidenav-content>
     <p><button mat-button (click)="sidenav.open()">Open</button></p>
   </mat-sidenav-content>
 </mat-sidenav-container>

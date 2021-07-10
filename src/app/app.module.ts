@@ -16,6 +16,7 @@ import { LoginComponent } from './login/component/login.component';
 import { BugsRepContainer } from './bugsRep/container/bugs-rep/bugs-rep.container';
 import { BugsRepFormComponent } from './bugsRep/component/bugs-rep-form/bugs-rep-form.component';
 import { PicViewComponent } from './bugsRep/component/pic-view/pic-view.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -26,7 +27,8 @@ import { PicViewComponent } from './bugsRep/component/pic-view/pic-view.componen
     LoginComponent,
     BugsRepContainer,
     BugsRepFormComponent,
-    PicViewComponent
+    PicViewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
