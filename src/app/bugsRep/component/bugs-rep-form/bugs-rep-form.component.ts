@@ -14,8 +14,7 @@ export class BugsRepFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      login: [null, Validators.required],
-      password: [null, Validators.required]
+      id: [null, Validators.required]
     })
   }
 

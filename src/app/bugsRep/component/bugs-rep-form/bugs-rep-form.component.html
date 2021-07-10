@@ -2,10 +2,13 @@
   <mat-sidenav #sidenav opened mode="side" position="end" disableClose>
     <p><button mat-button (click)="sidenav.close()">Zamknij</button></p>
   <form [formGroup]="form" class = "sideForm">
+    <div>Podaj ID pojazdu *</div>
     <mat-form-field appearance="fill">
         <mat-label>ID pojazdu</mat-label>
         <input matInput type="text" placeholder="ID pojazdu" formControlName="id">
     </mat-form-field><br/>
+
+    <div>Wybierz etap procesu *</div>
     <mat-form-field appearance="fill">
     <mat-label>Wybierz etap procesu</mat-label>
     <mat-select>
@@ -16,6 +19,7 @@
     </mat-select>
   </mat-form-field><br/>
 
+  <div>Wybierz część pojazdu *</div>
   <mat-form-field appearance="fill">
     <mat-label>Wybierz część samochodu</mat-label>
     <mat-select>
@@ -26,6 +30,7 @@
     </mat-select>
   </mat-form-field><br/>
 
+  <div>Wybierz rodzaj błędu *</div>
   <mat-form-field appearance="fill">
      <mat-label>Wybierz Rodzaj błędu</mat-label>
     <mat-select>
