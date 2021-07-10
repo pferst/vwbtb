@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sideNav" (backdropClick)="sidenav.close()">
-  <mat-sidenav #sidenav opened mode="side" position="end" disableClose>
+  <mat-sidenav #sidenav opened mode="side" disableClose>
     <p><button mat-button (click)="sidenav.close()">Zamknij</button></p>
   <form [formGroup]="form" class = "sideForm">
     <div>Podaj ID pojazdu *</div>
