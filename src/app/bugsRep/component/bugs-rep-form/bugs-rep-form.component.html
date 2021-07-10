@@ -1,4 +1,3 @@
-<mat-sidenav-container class="sideNav" (backdropClick)="sidenav.close()">
   <mat-sidenav #sidenav opened mode="side" disableClose [mode]="mode.value">
     <p><button mat-button (click)="sidenav.close()">Zamknij</button></p>
   <form [formGroup]="form" class = "sideForm">
@@ -46,4 +45,3 @@
   <mat-sidenav-content>
     <p><button mat-button (click)="sidenav.open()">Open</button></p>
   </mat-sidenav-content>
-</mat-sidenav-container>
