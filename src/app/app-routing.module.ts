@@ -4,6 +4,7 @@ import { LoginContainer } from './login/container/login.container';
 import { BugsRepContainer } from './bugsRep/container/bugs-rep/bugs-rep.container';
 import { StatsContainer } from './stats/container/stats/stats.container';
 
+
 const routes: Routes = [
   { path: 'login', component: LoginContainer },
   { path: '', component: BugsRepContainer },
