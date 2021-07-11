@@ -5,7 +5,7 @@ import { LoginComponent } from '../component/login.component';
 @Component({
   selector: 'login-container',
   templateUrl: './login.container.html',
-  styleUrls: ['./login.container.scss'],
+  styleUrls: ['./login.container.scss', '../../navbar/navbar.component.scss'],
   viewProviders: [LoginComponent]
 })
 export class LoginContainer implements OnInit {
