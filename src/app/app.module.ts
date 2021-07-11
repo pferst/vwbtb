@@ -19,7 +19,6 @@ import { BugsRepFormComponent } from './bugsRep/component/bugs-rep-form/bugs-rep
 import { PicViewComponent } from './bugsRep/component/pic-view/pic-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TabsComponent } from './tabs/tabs.component';
-import { StatsContainer } from './stats/container/stats/stats.container';
 
 
 
@@ -32,8 +31,7 @@ import { StatsContainer } from './stats/container/stats/stats.container';
     BugsRepFormComponent,
     PicViewComponent,
     NavbarComponent,
-    TabsComponent,
-    StatsContainer
+    TabsComponent
   ],
   imports: [
     BrowserModule,
