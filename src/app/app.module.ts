@@ -18,6 +18,7 @@ import { BugsRepContainer } from './bugsRep/container/bugs-rep/bugs-rep.containe
 import { BugsRepFormComponent } from './bugsRep/component/bugs-rep-form/bugs-rep-form.component';
 import { PicViewComponent } from './bugsRep/component/pic-view/pic-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 
 
@@ -29,7 +30,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BugsRepContainer,
     BugsRepFormComponent,
     PicViewComponent,
-    NavbarComponent
+    NavbarComponent,
+    TabsComponent
   ],
   imports: [
     BrowserModule,
