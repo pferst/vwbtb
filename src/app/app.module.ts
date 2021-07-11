@@ -19,6 +19,7 @@ import { BugsRepFormComponent } from './bugsRep/component/bugs-rep-form/bugs-rep
 import { PicViewComponent } from './bugsRep/component/pic-view/pic-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { StatsComponent } from './bugsRep/component/stats/stats.component';
 
 
 
@@ -31,7 +32,8 @@ import { TabsComponent } from './tabs/tabs.component';
     BugsRepFormComponent,
     PicViewComponent,
     NavbarComponent,
-    TabsComponent
+    TabsComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
