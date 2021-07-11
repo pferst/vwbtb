@@ -1,4 +1,5 @@
-<mat-tab-group animationDuration="0ms" dynamicHeight>
-    <mat-tab label="First"></mat-tab>
-    <mat-tab label="Second"></mat-tab>
-</mat-tab-group>
+<nav mat-tab-nav-bar animationDuration="0ms" class="tabLabel">
+    <a mat-tab-link *ngFor="let link of links"
+       (click)="activeLink = link"
+       [active]="activeLink == link"> {{link}} </a>
+  </nav>
