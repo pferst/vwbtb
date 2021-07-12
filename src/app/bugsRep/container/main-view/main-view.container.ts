@@ -16,4 +16,8 @@ export class MainViewContainer implements OnInit {
 
   ngOnInit(): void {
   }
+  closeForm(sidenav: MatSidenav)
+  {
+    sidenav.toggle();
+  }
 }
