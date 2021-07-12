@@ -14,7 +14,6 @@ import { MainViewContainer } from '../main-view/main-view.container';
 export class BugsRepContainer implements OnInit {
 
   //rootUrl='';
-  show=false;
   navLinks = [
     {
       name: 'Zgłaszanie błędów',
