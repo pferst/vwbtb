@@ -4,6 +4,7 @@ import { LoginContainer } from './login/container/login.container';
 import { BugsRepContainer } from './bugsRep/container/bugs-rep/bugs-rep.container';
 import { PicViewComponent } from './bugsRep/component/pic-view/pic-view.component';
 import { StatsComponent } from './bugsRep/component/stats/stats.component';
+import { MainViewContainer } from './bugsRep/container/main-view/main-view.container';
 
 const routes: Routes = [
   { path: 'login', component: LoginContainer },
@@ -13,7 +14,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: PicViewComponent
+        component: MainViewContainer
         
       },
       {
