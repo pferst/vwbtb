@@ -20,6 +20,7 @@ import { PicViewComponent } from './bugsRep/component/pic-view/pic-view.componen
 import { NavbarComponent } from './navbar/navbar.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { StatsComponent } from './bugsRep/component/stats/stats.component';
+import { MainViewComponent } from './bugsRep/container/main-view/main-view.component';
 
 
 
@@ -33,7 +34,8 @@ import { StatsComponent } from './bugsRep/component/stats/stats.component';
     PicViewComponent,
     NavbarComponent,
     TabsComponent,
-    StatsComponent
+    StatsComponent,
+    MainViewComponent
   ],
   imports: [
     BrowserModule,
