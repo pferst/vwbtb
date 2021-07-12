@@ -12,8 +12,9 @@ export class NavbarComponent implements OnInit {
 
   @Input() links: Array<any>;
   index: number;
+  action: boolean = false;
   @Output() tabChanging = new EventEmitter<number>();
-  @Output() formStatusChanging = new EventEmitter<any>();
+  @Output() formStatusChanging = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit(): void {
@@ -24,6 +25,15 @@ export class NavbarComponent implements OnInit {
     this.tabChanging.emit(this.index);
   }
   changeFormStatus(): void{
-    this.formStatusChanging.emit();
+    if(this.action)
+    {
+      this.formStatusChanging.emit(false);
+      this.action=true;
+    }
+    else
+    {
+      this.formStatusChanging.emit(true);
+      this.action=false;
+    }
   }
 }

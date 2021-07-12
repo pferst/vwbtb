@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BugsRepFormComponent } from '../../component/bugs-rep-form/bugs-rep-form.component';
-import { MatSidenav } from '@angular/material/sidenav';
+import { SideFormActionService } from '../../service/side-form-action.service';
+import { Subscription } from 'rxjs';
 import { PicViewComponent } from '../../component/pic-view/pic-view.component';
 import { StatsComponent } from '../../component/stats/stats.component';
 import { MainViewContainer } from '../main-view/main-view.container';
@@ -12,10 +13,12 @@ import { MainViewContainer } from '../main-view/main-view.container';
   styleUrls: ['./bugs-rep.container.scss'],
   providers: [BugsRepFormComponent, PicViewComponent, StatsComponent, MainViewContainer]
 })
-export class BugsRepContainer implements OnInit {
+export class BugsRepContainer implements OnInit, OnDestroy {
 
-  //rootUrl='';
-  changeFormStatus: boolean;
+  //data for open and close form in sidenav
+  action: boolean;
+  subscription: Subscription;
+  //
   navLinks = [
     {
       name: 'Zgłaszanie błędów',
@@ -29,18 +32,21 @@ export class BugsRepContainer implements OnInit {
     }
   ];
   activetedLink: number;
-  constructor(private route: ActivatedRoute, public router: Router) {
+  constructor(private route: ActivatedRoute, public router: Router, private data: SideFormActionService) {
   }
 
   ngOnInit(): void {
     this.activetedLink = 0;
-    this.changeFormStatus=false;
+    this.subscription = this.data.currentAction.subscribe(action => this.action = action)
+  }
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
   }
   receiveIndex($event)
   {
     this.activetedLink=$event;
   }
-  closeOrOpenForm(): void{
-    this.changeFormStatus=true;
+  closeOrOpenForm($event): void{
+    this.data.changeStatus($event);
   }
 }
