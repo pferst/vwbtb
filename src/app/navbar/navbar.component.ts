@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TabsComponent } from '../tabs/tabs.component';
 
 @Component({
@@ -9,9 +9,18 @@ import { TabsComponent } from '../tabs/tabs.component';
 })
 export class NavbarComponent implements OnInit {
 
+  @Input() links: Array<any>;
+  @Input() activeLink: number;
+  index: number;
+  @Output() tabChanging = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit(): void {
+  }
+  transferToContainer($event)
+  {
+    this.index=$event;
+    this.tabChanging.emit(this.index);
   }
 
 }

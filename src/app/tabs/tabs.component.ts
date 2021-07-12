@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -7,12 +8,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TabsComponent implements OnInit {
 
-  links = ['First', 'Second'];
-  activeLink = this.links[0];
+  @Input() links:  Array<any>;
+  @Input() activeLink: number;
+  rootUrl='';
+  @Output() tabEvent = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, public router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void{
+  }
+  changeTab(index: number){
+    this.tabEvent.emit(index);
   }
 
 }
