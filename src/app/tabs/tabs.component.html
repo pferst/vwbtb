@@ -1,8 +1,9 @@
-<nav mat-tab-nav-bar animationDuration="0ms" class="tabLabel">
+<nav mat-tab-nav-bar animationDuration="0ms">
     <a mat-tab-link 
+        class="tabLabel"
         *ngFor="let link of links"
         [routerLink]="rootUrl + link.link"
-        [active]="this.router.url === rootUrl + link.link"
+        [active]="this.router.url == rootUrl + link.link"
         (click)="changeTab(link.index)">
         {{link.name}}
     </a>
