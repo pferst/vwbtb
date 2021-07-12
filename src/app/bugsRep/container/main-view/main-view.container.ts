@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { PicViewComponent } from '../../component/pic-view/pic-view.component';
 import { StatsComponent } from '../../component/stats/stats.component';
 
@@ -10,9 +11,9 @@ import { StatsComponent } from '../../component/stats/stats.component';
 })
 export class MainViewContainer implements OnInit {
 
+  @Output() sideForm = new EventEmitter<MatSidenav>();
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

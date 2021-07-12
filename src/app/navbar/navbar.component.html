@@ -1,5 +1,5 @@
 <mat-toolbar class="header">
-    <button mat-icon-button><mat-icon>menu</mat-icon></button>
+    <button mat-icon-button (click)="changeFormStatus()"><mat-icon>menu</mat-icon></button>
     <h1>Be the best</h1>
     <span class="fillFreSpace"></span>
     <app-tabs [links]="links" (tabEvent)="transferToContainer($event)"></app-tabs>
