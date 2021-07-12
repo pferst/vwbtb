@@ -10,7 +10,6 @@ import { TabsComponent } from '../tabs/tabs.component';
 export class NavbarComponent implements OnInit {
 
   @Input() links: Array<any>;
-  @Input() activeLink: number;
   index: number;
   @Output() tabChanging = new EventEmitter<number>();
   constructor() { }

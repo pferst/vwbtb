@@ -27,15 +27,15 @@ export class BugsRepContainer implements OnInit {
       index: 1
     }
   ];
-  activeLink: number;
+  activetedLink: number;
   constructor(private route: ActivatedRoute, public router: Router) {
   }
 
   ngOnInit(): void {
-    this.activeLink = 0;
+    this.activetedLink = 0;
   }
   receiveIndex($event)
   {
-    this.activeLink=$event;
+    this.activetedLink=$event;
   }
 }

@@ -9,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TabsComponent implements OnInit {
 
   @Input() links:  Array<any>;
-  @Input() activeLink: number;
   rootUrl='';
   @Output() tabEvent = new EventEmitter<number>();
 
