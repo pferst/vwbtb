@@ -6,13 +6,14 @@ import { PicViewComponent } from './bugsRep/component/pic-view/pic-view.componen
 import { StatsComponent } from './bugsRep/component/stats/stats.component';
 import { MainViewContainer } from './bugsRep/container/main-view/main-view.container';
 import { AuthguardGuard } from './guard/authguard.guard';
+import { AuthService } from './service/auth.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginContainer },
   { 
     path: '', 
     component: BugsRepContainer,
-    canActivate: [AuthguardGuard],
+    //canActivate: [AuthguardGuard],
     children: [
       {
         path: '',
@@ -32,6 +33,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthguardGuard]
+  providers: [AuthguardGuard, AuthService]
 })
 export class AppRoutingModule { }

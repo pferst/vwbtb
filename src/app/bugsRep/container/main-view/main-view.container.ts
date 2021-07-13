@@ -13,6 +13,8 @@ import { StatsComponent } from '../../component/stats/stats.component';
 })
 export class MainViewContainer implements OnInit, OnDestroy {
 
+  @ViewChild('sidenav') sidenav: MatSidenav;
+
   //data for open and close form in sidenav
   action: boolean;
   subscription: Subscription;
@@ -24,14 +26,17 @@ export class MainViewContainer implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.data.currentAction.subscribe(action => {
       this.action = action;
-      //this.closeForm(this.sidenav);
+      if(this.sidenav)
+      {
+        this.closeForm();
+      }
     });
   }
   ngOnDestroy(): void{
     this.subscription.unsubscribe();
   }
-  closeForm(sidenav: MatSidenav)
+  closeForm()
   {
-    sidenav.toggle();
+    this.sidenav.toggle();
   }
 }
