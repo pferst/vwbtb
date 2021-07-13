@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sideNav"><!--(backdropClick)="sidenav.close()"-->
-    <mat-sidenav #sidenav opened mode="side" disableClose>
+    <mat-sidenav #sidenav onload="saveRef(sidenav)" opened mode="side" disableClose>
         <p><button mat-button (click)="closeForm(sidenav)">Zamknij</button></p>
         <app-bugs-rep-form></app-bugs-rep-form>
     </mat-sidenav>

@@ -16,7 +16,7 @@ export class MainViewContainer implements OnInit, OnDestroy {
   //data for open and close form in sidenav
   action: boolean;
   subscription: Subscription;
-  @ViewChild('sidenav') sidenav: ElementRef;
+  //sidenav: MatSidenav;
   //
   @Output() sideForm = new EventEmitter<HTMLElement>();
   constructor(private data: SideFormActionService) { }
@@ -24,7 +24,7 @@ export class MainViewContainer implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.data.currentAction.subscribe(action => {
       this.action = action;
-      this.closeForm(this.sidenav.nativeElement);
+      //this.closeForm(this.sidenav);
     });
   }
   ngOnDestroy(): void{
