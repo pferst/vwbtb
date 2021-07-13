@@ -1,6 +1,7 @@
 import { Component, Directive, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthguardGuard } from 'src/app/guard/authguard.guard';
 import { LoginComponent } from '../component/login.component';
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginContainer implements OnInit {
   form: FormGroup;
   login: string;
   password: string;
-  constructor() {
+  constructor(private authGuard: AuthguardGuard) {
    }
 
   ngOnInit(): void {

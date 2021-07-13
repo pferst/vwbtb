@@ -5,12 +5,14 @@ import { BugsRepContainer } from './bugsRep/container/bugs-rep/bugs-rep.containe
 import { PicViewComponent } from './bugsRep/component/pic-view/pic-view.component';
 import { StatsComponent } from './bugsRep/component/stats/stats.component';
 import { MainViewContainer } from './bugsRep/container/main-view/main-view.container';
+import { AuthguardGuard } from './guard/authguard.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginContainer },
   { 
     path: '', 
     component: BugsRepContainer,
+    canActivate: [AuthguardGuard],
     children: [
       {
         path: '',
@@ -29,6 +31,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthguardGuard]
 })
 export class AppRoutingModule { }
