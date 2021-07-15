@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class BugsRepFormComponent implements OnInit {
 
+  labelPosition: 'before' | 'after' = 'after';
   form: FormGroup;
   constructor(private fb: FormBuilder) { }
 
@@ -15,6 +16,9 @@ export class BugsRepFormComponent implements OnInit {
     this.form = this.fb.group({
       id: [null, Validators.required]
     })
+  }
+  clear(){
+
   }
 
 }

@@ -12,3 +12,13 @@ mat-card-title{
     background-color: rgba(76, 111, 228, 0.9);
     margin-bottom: 2vh;
 }
+.fillFreeSpaceVertical{
+    margin-left: .5vw;
+}
+.tp-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+ }
+ .tp-radio-button {
+    margin: 5px;
+ }
