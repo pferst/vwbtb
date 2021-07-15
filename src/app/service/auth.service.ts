@@ -29,11 +29,39 @@ export class AuthService {
    }
   logIn(login: string, password: string): Observable<User>
   {
-      return this.user$.pipe(tap(user =>{
-      this.subject.next(user);
-      localStorage.setItem('currentUser',JSON.stringify(user));
-    }),
-      shareReplay()
-    );
+    let user: User = undefined;
+    if(login=='admin' && password=='123456')
+    {
+      user = {
+        login: login, 
+        password: password
+      };
+      this.user$=this.user$.pipe(map(user => user));
+    }
+    return this.user$
+      .pipe( 
+        tap(user =>{
+          this.subject.next(user);
+          localStorage.setItem('currentUser',JSON.stringify(user));
+        })
+      );
+    
   }
+
+  logout() 
+  {
+    this.subject.next(null);
+    localStorage.removeItem('currentUser');
+  }
+/*   isAuthenticated(){
+    const currUser = JSON.parse(localStorage.getItem('currentUser'));
+    if(currUser.login=='admin' && currUser=='123456')
+    {
+      this.isLoggedIn$ = this.user$.pipe(map(user => true));
+    }
+    else
+    {
+      this.isLoggedIn$ = this.user$.pipe(map(user => false));
+    }
+  } */
 }

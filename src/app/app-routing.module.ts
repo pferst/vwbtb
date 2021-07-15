@@ -27,7 +27,7 @@ const routes: Routes = [
     ]
   },
   //{ path: '',   redirectTo: '/login', pathMatch: 'full' }, // redirect to login
-  //{ path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
+  { path: '**', redirectTo: '' },  // Wildcard route for a 404 page
 ];
 
 @NgModule({

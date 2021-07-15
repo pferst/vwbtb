@@ -13,8 +13,8 @@ export class AuthguardGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): 
     Observable<boolean | UrlTree> {
-       return this.auth.isLoggedIn$.pipe(
+      return this.auth.isLoggedIn$.pipe(
          map(loggedIn => loggedIn? true: this.router.parseUrl('/login'))
-         )
+         );
   }
 }

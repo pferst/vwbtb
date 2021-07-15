@@ -6,6 +6,7 @@ import { AuthguardGuard } from 'src/app/guard/authguard.guard';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoginComponent } from '../component/login.component';
 import { User } from '../interface/user';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'login-container',
@@ -18,17 +19,34 @@ export class LoginContainer implements OnInit, OnDestroy {
   form: FormGroup;
   user: User;
   subscription: Subscription;
-  constructor(private authGuard: AuthService) {
+  constructor(private auth: AuthService, private router: Router) {
    }
 
   ngOnInit(): void {
-    this.subscription = this.authGuard.user$.subscribe(user => this.user = user);
+    this.subscription = this.auth.user$.subscribe(user => this.user = user);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+/*   this.auth.login(val.email, val.password)
+  .subscribe(
+      () => {
+          this.router.navigateByUrl('/courses');
+      },
+      err => {
+          alert("Login failed!");
+      }
+  ); */
   receiveForm($event): void{
-    this.authGuard.user$=this.authGuard.logIn($event.login, $event.password);
-    //console.log($event.login);
+    const user: User = {login: $event.login, password: $event.password};
+    this.auth.logIn(user.login, user.password)
+    .subscribe(
+        () => {
+          this.router.navigateByUrl('/');
+      },
+      err => {
+        alert("Login failed");
+      }
+    ) 
   }
 }
