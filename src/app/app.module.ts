@@ -11,6 +11,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card'
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginContainer } from './login/container/login.container';
 import { LoginComponent } from './login/component/login.component';
@@ -49,7 +53,11 @@ import { MainViewContainer } from './bugsRep/container/main-view/main-view.conta
     MatSelectModule,
     MatSidenavModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

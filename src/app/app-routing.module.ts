@@ -13,7 +13,7 @@ const routes: Routes = [
   { 
     path: '', 
     component: BugsRepContainer,
-    canActivate: [AuthguardGuard],
+    //canActivate: [AuthguardGuard],
     children: [
       {
         path: '',

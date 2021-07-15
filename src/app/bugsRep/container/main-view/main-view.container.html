@@ -1,10 +1,13 @@
 <mat-sidenav-container class="sideNav"><!--(backdropClick)="sidenav.close()"-->
     <mat-sidenav #sidenav opened mode="side" disableClose>
-        <p><button mat-button (click)="closeForm()">Zamknij</button></p>
+        <h2>Formularz zgłoszeniowy</h2>
         <app-bugs-rep-form></app-bugs-rep-form>
     </mat-sidenav>
     <mat-sidenav-content>
-        <p><button mat-button (click)="closeForm()">Open</button></p>
+        <button mat-button (click)="closeForm()">
+            <mat-icon *ngIf='formOpened'>keyboard_arrow_left</mat-icon>
+            <mat-icon *ngIf='!formOpened'>keyboard_arrow_right</mat-icon>
+        </button>
         <app-pic-view></app-pic-view>
     </mat-sidenav-content>
 </mat-sidenav-container>

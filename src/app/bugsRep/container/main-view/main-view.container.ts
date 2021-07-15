@@ -18,6 +18,7 @@ export class MainViewContainer implements OnInit, OnDestroy {
   //data for open and close form in sidenav
   action: boolean;
   subscription: Subscription;
+  formOpened: boolean = true;
   //sidenav: MatSidenav;
   //
   @Output() sideForm = new EventEmitter<HTMLElement>();
@@ -38,5 +39,13 @@ export class MainViewContainer implements OnInit, OnDestroy {
   closeForm()
   {
     this.sidenav.toggle();
+    if(this.formOpened)
+    {
+      this.formOpened=false;
+    }
+    else
+    {
+      this.formOpened=true;
+    }
   }
 }

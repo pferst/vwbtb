@@ -1,41 +1,86 @@
-    <form [formGroup]="form" class = "sideForm">
-    <div>Podaj ID pojazdu *</div>
-    <mat-form-field appearance="fill">
-        <mat-label>ID pojazdu</mat-label>
-        <input matInput type="text" placeholder="ID pojazdu" formControlName="id">
-    </mat-form-field><br/>
-
-    <div>Wybierz etap procesu *</div>
-    <mat-form-field appearance="fill">
-    <mat-label>Wybierz etap procesu</mat-label>
-    <mat-select>
-      <mat-option>--------</mat-option>
-      <mat-option value="option1">Option 1</mat-option>
-      <mat-option value="option2">Option 2</mat-option>
-      <mat-option value="option3">Option 3</mat-option>
-    </mat-select>
-  </mat-form-field><br/>
-
-  <div>Wybierz część pojazdu *</div>
-  <mat-form-field appearance="fill">
-    <mat-label>Wybierz część samochodu</mat-label>
-    <mat-select>
-      <mat-option>--------</mat-option>
-      <mat-option value="option1">Option 1</mat-option>
-      <mat-option value="option2">Option 2</mat-option>
-      <mat-option value="option3">Option 3</mat-option>
-    </mat-select>
-  </mat-form-field><br/>
-
-  <div>Wybierz rodzaj błędu *</div>
-  <mat-form-field appearance="fill">
-     <mat-label>Wybierz Rodzaj błędu</mat-label>
-    <mat-select>
-      <mat-option>--------</mat-option>
-      <mat-option value="option1">Option 1</mat-option>
-      <mat-option value="option2">Option 2</mat-option>
-      <mat-option value="option3">Option 3</mat-option>
-    </mat-select>
-  </mat-form-field><br/>
-  <!-- tu powinien być zasadniczo time-picker ale wszystkie są cholernie brzydkie, a jak są ładne to nie umiem ich zaimplementować (np. ngx) -->
-  </form>
+<form [formGroup]="form" class = "sideForm">
+  <!-- Space-->
+  <mat-card>
+    <mat-card-title>Obszar</mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Wybierz etap procesu</mat-label>
+        <mat-select>
+          <mat-option></mat-option>
+          <mat-option value="bc">BC/CC</mat-option>
+          <mat-option value="fuler">Fuler</mat-option>
+          <mat-option value="pvc">PVC</mat-option>
+          <mat-option value="vbh">VBH/KTL</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card><br/>
+  <!-- Date-->
+  <mat-card>
+    <mat-card-title>Data</mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Wybierz datę</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card><br/>
+  <!-- Info about car-->
+  <mat-card>
+    <mat-card-title>Auto</mat-card-title>
+    <mat-card-content>
+      <!-- Model -->
+      <div> Podaj ID pojazdu</div>
+        <mat-form-field appearance="fill">
+          <mat-label>ID pojazdu</mat-label>
+          <input matInput type="text" placeholder="ID pojazdu" formControlName="id">
+      </mat-form-field><br/>
+      <!-- Type-->
+      <div>Wybierz rodzaj pojazdu</div>
+      <mat-form-field appearance="fill">
+        <mat-label>Wybierz rodzaj pojazdu</mat-label>
+        <mat-select>
+          <mat-option></mat-option>
+          <mat-option value="option1">Doka</mat-option>
+          <mat-option value="option2">Kasten</mat-option>
+          <mat-option value="option3">Kombi</mat-option>
+        </mat-select>
+      </mat-form-field><br/>
+      <!-- Side -->
+      <div>Wybierz stronę pojazdu</div>
+      <mat-radio-group>
+        <mat-radio-button value="wewn">Wewnętrzna</mat-radio-button>
+        <mat-radio-button value="zewn">Zewnętrzna</mat-radio-button>
+      </mat-radio-group>
+    </mat-card-content>
+  </mat-card><br/>
+  <!-- Errors -->
+  <mat-card>
+    <mat-card-title>Błąd</mat-card-title>
+    <mat-card-content>
+      <div>Wybierz rodzaj błędu</div>
+      <mat-form-field appearance="fill">
+        <mat-label>błąd</mat-label>
+        <mat-select  placeholder="błąd">
+          <mat-option></mat-option>
+          <mat-option value="option1">Option 1</mat-option>
+          <mat-option value="option2">Option 2</mat-option>
+          <mat-option value="option3">Option 3</mat-option>
+        </mat-select>
+      </mat-form-field><br/>
+      <div>Wybierz wtrącenie</div>
+      <mat-form-field appearance="fill">
+        <mat-label>wtrącenie</mat-label>
+        <mat-select>
+          <mat-option></mat-option>
+          <mat-option value="option1">Option 1</mat-option>
+          <mat-option value="option2">Option 2</mat-option>
+          <mat-option value="option3">Option 3</mat-option>
+        </mat-select>
+      </mat-form-field><br/>
+    </mat-card-content>
+  </mat-card><br/>
+<button mat-raised-button type="submit" [disabled]="!form.valid" class="submitButton">Zapisz</button>
+</form>
