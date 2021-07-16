@@ -38,6 +38,7 @@ export class BugsRepFormComponent implements OnInit {
       date: [this.date, Validators.required],
       procStage: [null, Validators.required],
       carType: [null, Validators.required],
+      carSide: [null, Validators.required],
       errType: [null, Validators.required],
       injType: [null, Validators.required]
     });

@@ -27,7 +27,7 @@ export class AuthService {
       this.subject.next(JSON.parse(user));
     }
    }
-  logIn(login: string, password: string): Observable<User>
+  logIn(login: string, password: string): void
   {
     let user: User = undefined;
     if(login=='admin' && password=='123456')
@@ -36,15 +36,15 @@ export class AuthService {
         login: login, 
         password: password
       };
-      this.user$=this.user$.pipe(map(user => user));
+      //this.user$=this.user$.pipe(map(user => user));
     }
-    return this.user$
+/*     return this.user$
       .pipe( 
-        tap(user =>{
+        tap(user =>{ */
           this.subject.next(user);
           localStorage.setItem('currentUser',JSON.stringify(user));
-        })
-      );
+/*         })
+      ); */
     
   }
 

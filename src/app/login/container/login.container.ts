@@ -39,14 +39,7 @@ export class LoginContainer implements OnInit, OnDestroy {
   ); */
   receiveForm($event): void{
     const user: User = {login: $event.login, password: $event.password};
-    this.auth.logIn(user.login, user.password)
-    .subscribe(
-        () => {
-          this.router.navigateByUrl('/');
-      },
-      err => {
-        alert("Login failed");
-      }
-    ) 
+    this.auth.logIn(user.login, user.password);
+    this.router.navigateByUrl('/');
   }
 }

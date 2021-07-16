@@ -1,5 +1,5 @@
 import { Pictures } from './pictures.interface';
-export const pcitures: Pictures[] = [
+export const pictures: Pictures[] = [
     {
         name: 'Doka',
         side: 'wew',
