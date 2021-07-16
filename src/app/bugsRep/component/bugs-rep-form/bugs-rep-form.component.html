@@ -5,7 +5,7 @@
     <mat-card-content>
       <mat-form-field appearance="fill">
         <mat-label>Wybierz etap procesu</mat-label>
-        <mat-select>
+        <mat-select formControlName="procStage">
           <mat-option></mat-option>
           <mat-option value="bc">BC/CC</mat-option>
           <mat-option value="fuler">Fuler</mat-option>
@@ -21,10 +21,11 @@
     <mat-card-content>
       <mat-form-field appearance="fill">
         <mat-label>Wybierz datę</mat-label>
-        <input matInput [matDatepicker]="picker">
+        <input matInput [matDatepicker]="picker" formControlName="date" placeholder="dd/mm/yyyy">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+      </mat-form-field><br/>
+      <button mat-raised-button (click)="today()" class="submitButton">Dziś</button>
     </mat-card-content>
   </mat-card><br/>
   <!-- Info about car-->
@@ -41,7 +42,7 @@
       <div>Wybierz rodzaj pojazdu</div>
       <mat-form-field appearance="fill">
         <mat-label>Wybierz rodzaj pojazdu</mat-label>
-        <mat-select>
+        <mat-select formControlName="carType">
           <mat-option></mat-option>
           <mat-option value="option1">Doka</mat-option>
           <mat-option value="option2">Kasten</mat-option>
@@ -70,7 +71,7 @@
       <div>Wybierz wtrącenie</div>
       <mat-form-field appearance="fill">
         <mat-label>wtrącenie</mat-label>
-        <mat-select>
+        <mat-select formControlName="injType">
           <mat-option *ngFor="let inj of injectionsData" [value]="inj.name">{{inj.name}}</mat-option>
         </mat-select>
       </mat-form-field><br/>
