@@ -48,4 +48,7 @@ export class MainViewContainer implements OnInit, OnDestroy {
       this.formOpened=true;
     }
   }
+  showPic($event){
+    
+  }
 }

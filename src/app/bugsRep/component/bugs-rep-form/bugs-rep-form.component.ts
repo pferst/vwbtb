@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 import { errors } from '../../4form/errTypes';
 import { injections } from '../../4form/errInjection';
 import { ErrTypes } from '../../4form/errTypes.interface';
@@ -17,6 +17,7 @@ export class BugsRepFormComponent implements OnInit {
   errorsData: ErrTypes[];
   injectionsData: Injection[];
   form: FormGroup;
+  @Output() viewButter = new EventEmitter<FormGroup>();
   date: Date;
   constructor(private fb: FormBuilder, private dateAdapter: DateAdapter<Date>) {
     this.dateAdapter.setLocale('en-GB');
@@ -52,6 +53,7 @@ export class BugsRepFormComponent implements OnInit {
     this.date=new Date();
   }
   showButter(){
-    
+    const form1: FormGroup = this.form.value;
+    this.viewButter.emit(form1);
   }
 }
