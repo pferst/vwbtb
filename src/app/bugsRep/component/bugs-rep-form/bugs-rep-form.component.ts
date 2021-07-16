@@ -51,5 +51,7 @@ export class BugsRepFormComponent implements OnInit {
   today(): void{
     this.date=new Date();
   }
-
+  showButter(){
+    
+  }
 }

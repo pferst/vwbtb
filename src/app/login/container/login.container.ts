@@ -28,18 +28,16 @@ export class LoginContainer implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-/*   this.auth.login(val.email, val.password)
-  .subscribe(
-      () => {
-          this.router.navigateByUrl('/courses');
-      },
-      err => {
-          alert("Login failed!");
-      }
-  ); */
   receiveForm($event): void{
     const user: User = {login: $event.login, password: $event.password};
-    this.auth.logIn(user.login, user.password);
-    this.router.navigateByUrl('/');
+    if(this.auth.logIn(user.login, user.password))
+    {
+      this.router.navigateByUrl('/');
+    }
+    else{
+      this.router.navigateByUrl('/login');
+      localStorage.clear();
+      console.log("podaj poprawne dane");
+    }
   }
 }

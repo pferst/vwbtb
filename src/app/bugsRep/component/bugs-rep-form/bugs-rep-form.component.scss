@@ -9,11 +9,15 @@ mat-card-title{
     font-size: large;
 }
 .submitButton{
-    background-color: rgba(76, 111, 228, 0.9);
+    background-color: rgba(5, 27, 44, 0.9);
     margin-bottom: 2vh;
+    color: white;
 }
 .fillFreeSpaceVertical{
     margin-left: .5vw;
+}
+.fillMoreSpaceVertical{
+    margin-left: 11.7vw;
 }
 .tp-radio-group {
     display: inline-flex;

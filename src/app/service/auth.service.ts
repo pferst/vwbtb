@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { User } from '../login/interface/user';
 
-const currentUser = "empty";
+const currentUser: User = {login: '', password: ''};
 @Injectable({
   providedIn: 'root'
 })
@@ -19,33 +19,28 @@ export class AuthService {
   constructor() {
     this.isLoggedIn$ = this.user$.pipe(map(user => !!user));
     this.isLoggedOut$ = this.user$.pipe(map(user => !user));
-
     const user = localStorage.getItem('currentUser'); 
 
-    if(user)
+    if(user && user!=undefined)
     {
       this.subject.next(JSON.parse(user));
     }
-   }
-  logIn(login: string, password: string): void
+  }
+  logIn(login: string, password: string): boolean
   {
-    let user: User = undefined;
+    const user = undefined;
     if(login=='admin' && password=='123456')
     {
-      user = {
+      const user = {
         login: login, 
         password: password
       };
-      //this.user$=this.user$.pipe(map(user => user));
+      this.subject.next(user);
+      localStorage.setItem('currentUser',JSON.stringify(user));
+      return true;
     }
-/*     return this.user$
-      .pipe( 
-        tap(user =>{ */
-          this.subject.next(user);
-          localStorage.setItem('currentUser',JSON.stringify(user));
-/*         })
-      ); */
-    
+    localStorage.setItem('currentUser',JSON.stringify(user));
+    return false;
   }
 
   logout() 
