@@ -3,31 +3,31 @@ export const pictures: Pictures[] = [
     {
         name: 'Doka',
         side: 'wew',
-        path: '../../../../graphics/butterflies/carTypes/doka/ButterflyDOKAwew.jpg'
+        path: '../../../../assets/graphics/butterflies/carType/doka/ButterflyDOKAwew.jpg'
     },
     {
         name: 'Doka',
         side: 'zew',
-        path: '../../../../graphics/butterflies/carTypes/doka/ButterflyDOKAzew.jpg'
+        path: '../../../../assets/graphics/butterflies/carType/doka/ButterflyDOKAzew.bmp'
     },
     {
         name: 'Kasten',
         side: 'wew',
-        path: '../../../../graphics/butterflies/carTypes/kasten/ButterflyKASTENwew.jpg'
+        path: '../../../../assets/graphics/butterflies/carType/kasten/ButterflyKASTENwew.bmp'
     },
     {
         name: 'Kasten',
         side: 'zew',
-        path: '../../../../graphics/butterflies/carTypes/kasten/ButterflyKASTENzew.bmp'
+        path: '../../../../assets/graphics/butterflies/carType/kasten/ButterflyKASTENzew.bmp'
     },
     {
         name: 'Kombi',
         side: 'wew',
-        path: '../../../../graphics/butterflies/carTypes/kombi/ButterflyKMOBIwew.bmp'
+        path: '../../../../assets/graphics/butterflies/carType/kombi/ButterflyKOMBIzew.bmp'
     },
     {
         name: 'Kombi',
         side: 'zew',
-        path: '../../../../graphics/butterflies/carTypes/kombi/ButterflyKMOBIzew.bmp'
+        path: '../../../../assets/graphics/butterflies/carType/kombi/ButterflyKOMBIzew.bmp'
     },
 ]

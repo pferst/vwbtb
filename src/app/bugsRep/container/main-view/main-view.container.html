@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sideNav"><!--(backdropClick)="sidenav.close()"-->
     <mat-sidenav #sidenav opened mode="side" disableClose>
         <h2>Formularz zgłoszeniowy</h2>
-        <app-bugs-rep-form (form1)="showPic($event)"></app-bugs-rep-form>
+        <app-bugs-rep-form (viewButter)="showPic($event)"></app-bugs-rep-form>
     </mat-sidenav>
     <mat-sidenav-content>
         <button mat-button (click)="closeForm()">

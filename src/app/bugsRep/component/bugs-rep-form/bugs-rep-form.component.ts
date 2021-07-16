@@ -53,7 +53,7 @@ export class BugsRepFormComponent implements OnInit {
     this.date=new Date();
   }
   showButter(){
-    const form1: FormGroup = this.form.value;
-    this.viewButter.emit(form1);
+    this.viewButter.emit(this.form.value);
+    //console.log('from: ',this.form.value);
   }
 }
