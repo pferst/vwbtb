@@ -17,13 +17,14 @@ export class BugsRepFormComponent implements OnInit {
   errorsData: ErrTypes[];
   injectionsData: Injection[];
   form: FormGroup;
-  selectedError = '';
   date: Date;
   constructor(private fb: FormBuilder, private dateAdapter: DateAdapter<Date>) {
     this.dateAdapter.setLocale('en-GB');
     this.date=new Date();
    }
-/*   id: string,
+/*
+  Reports form interface:   
+  id: string,
    date: Date,
    procStage: string,
    carType: string,
@@ -37,7 +38,7 @@ export class BugsRepFormComponent implements OnInit {
       date: [this.date, Validators.required],
       procStage: [null, Validators.required],
       carType: [null, Validators.required],
-      errType: [this.selectedError, Validators.required],
+      errType: [null, Validators.required],
       injType: [null, Validators.required]
     });
     this.errorsData = errors;

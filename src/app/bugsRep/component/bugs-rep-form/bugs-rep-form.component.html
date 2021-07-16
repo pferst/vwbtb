@@ -52,8 +52,8 @@
       <!-- Side -->
       <div>Wybierz stronę pojazdu</div>
       <mat-radio-group class = "tp-radio-group">
-        <mat-radio-button class = "tp-radio-button" value="wewn">Wewnętrzna</mat-radio-button>
-        <mat-radio-button class = "tp-radio-button" value="zewn">Zewnętrzna</mat-radio-button>
+        <mat-radio-button class = "tp-radio-button" value="wew">Wewnętrzna</mat-radio-button>
+        <mat-radio-button class = "tp-radio-button" value="zew">Zewnętrzna</mat-radio-button>
       </mat-radio-group>
     </mat-card-content>
   </mat-card><br/>
@@ -64,7 +64,7 @@
       <div>Wybierz rodzaj błędu</div>
       <mat-form-field appearance="fill">
         <mat-label>błąd</mat-label>
-        <mat-select  placeholder="błąd" [(value)]="selectedError" formControlName="errType">
+        <mat-select  placeholder="błąd" formControlName="errType">
           <mat-option *ngFor="let err of errorsData" [value]="err.name">{{err.name}}</mat-option>
         </mat-select>
       </mat-form-field><br/>
