@@ -1,4 +1,4 @@
-export interface errTypes{
+export interface ErrTypes{
     id: number,
     name: string
 }

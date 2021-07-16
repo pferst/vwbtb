@@ -1,5 +1,5 @@
-import { errTypes } from './errTypes.interface'
-export let errors: errTypes[] = [
+import { ErrTypes } from './errTypes.interface'
+export const errors: ErrTypes[] = [
     {
         id: 1,
         name: 'wtrącenia'

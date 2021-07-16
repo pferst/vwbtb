@@ -2,6 +2,10 @@ import { Injection } from "./errInjection.interface";
 
 export const injections: Injection[]=[
     {
+        id: 26,
+        name: '-'
+    },
+    {
         id: 1,
         name: 'koagulat'
     },
@@ -100,9 +104,5 @@ export const injections: Injection[]=[
     {
         id: 25,
         name: 'zabrudzenie PVC'
-    },
-    {
-        id: 26,
-        name: '-'
-    },
+    }
 ]

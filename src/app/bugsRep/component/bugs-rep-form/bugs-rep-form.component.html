@@ -63,21 +63,15 @@
       <div>Wybierz rodzaj błędu</div>
       <mat-form-field appearance="fill">
         <mat-label>błąd</mat-label>
-        <mat-select  placeholder="błąd">
-          <mat-option></mat-option>
-          <mat-option value="option1">Option 1</mat-option>
-          <mat-option value="option2">Option 2</mat-option>
-          <mat-option value="option3">Option 3</mat-option>
+        <mat-select  placeholder="błąd" [(value)]="selectedError" formControlName="errType">
+          <mat-option *ngFor="let err of errorsData" [value]="err.name">{{err.name}}</mat-option>
         </mat-select>
       </mat-form-field><br/>
       <div>Wybierz wtrącenie</div>
       <mat-form-field appearance="fill">
         <mat-label>wtrącenie</mat-label>
         <mat-select>
-          <mat-option></mat-option>
-          <mat-option value="option1">Option 1</mat-option>
-          <mat-option value="option2">Option 2</mat-option>
-          <mat-option value="option3">Option 3</mat-option>
+          <mat-option *ngFor="let inj of injectionsData" [value]="inj.name">{{inj.name}}</mat-option>
         </mat-select>
       </mat-form-field><br/>
     </mat-card-content>
