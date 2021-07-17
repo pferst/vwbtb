@@ -14,7 +14,8 @@ export class PicViewComponent implements OnInit, OnDestroy {
   //data for picView
   viewForm: Pictures;
   viewSub: Subscription;
-  path: string ='';
+  path: string ='a';
+
   //
   
   constructor(private picForm: ShowPicService) { }
@@ -25,6 +26,9 @@ export class PicViewComponent implements OnInit, OnDestroy {
         {
           this.viewForm = viewForm;
           this.path = this.viewForm.path;
+        }
+        else{
+          this.path = '';
         }
       });
   }

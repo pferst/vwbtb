@@ -1,3 +1,9 @@
 <section id="picture">
-    <img src='{{path}}' alt="Brak zdjęcia"/>
+    <span class="actionButtons">
+    <button mat-button *ngIf="path" ><mat-icon>undo</mat-icon></button>
+    <button mat-button *ngIf="path"><mat-icon>clear</mat-icon></button>
+    <button mat-button *ngIf="path"><mat-icon>redo</mat-icon></button>
+    </span>
+    <img src='{{path}}' alt="Brak zdjęcia" *ngIf="path"/>
+    <h3 class="center" *ngIf="!path">Aby wyświetlić motyl należy wypełnić formularz</h3>
 </section>

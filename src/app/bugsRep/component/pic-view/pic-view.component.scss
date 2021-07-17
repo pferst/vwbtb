@@ -1,9 +1,16 @@
 #picture{
     position: absolute;
-    top: 65px;
+    top: 0;//65px;
     bottom: 0;
     right: 4px;
-    left: 50px;
-    width: 400px;
-    height: 100px;
+    left: 0;//50px;
+}
+.center{
+    margin-left: 39%;
+    margin-top: 40vh;
+    font-style: italic;
+}
+img{
+    width: 100%;
+    height: auto;
 }
