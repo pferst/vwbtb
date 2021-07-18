@@ -3,10 +3,11 @@
     margin-right: 2vw;
 }
 mat-form-field{
-    width: 24vw;
+    width: 100%;
 }
 mat-card-title{
     font-size: large;
+    width: 24vw;
 }
 .submitButton{
     background-color: rgba(5, 27, 44, 0.9);
@@ -17,7 +18,7 @@ mat-card-title{
     margin-left: .5vw;
 }
 .fillMoreSpaceVertical{
-    margin-left: 11.7vw;
+    margin-left: 7.1vw;
 }
 .tp-radio-group {
     display: inline-flex;

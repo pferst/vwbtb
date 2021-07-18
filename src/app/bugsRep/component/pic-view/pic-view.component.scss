@@ -1,6 +1,6 @@
 #picture{
     position: absolute;
-    top: 0;//65px;
+    top: 30px;
     bottom: 0;
     right: 4px;
     left: 0;//50px;
@@ -13,4 +13,14 @@
 img{
     width: 100%;
     height: auto;
+}
+.actionButtons{
+    position: relative;
+    right: 0;
+    left: 85%;
+    top: -30px;
+}
+.actionButtons button{
+    margin-left: .5%;
+    display: inline-block;
 }
