@@ -20,7 +20,7 @@ export class BugsRepFormComponent implements OnInit {
   @Output() viewButter = new EventEmitter<FormGroup>();
   date: Date;
   constructor(private fb: FormBuilder, private dateAdapter: DateAdapter<Date>) {
-    this.dateAdapter.setLocale('en-GB');
+    this.dateAdapter.setLocale('pl');
     this.date=new Date();
    }
 /*
@@ -36,7 +36,7 @@ export class BugsRepFormComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       id: [null, Validators.required],
-      date: [this.date, Validators.required],
+      date: [new Date(), Validators.required],
       procStage: [null, Validators.required],
       carType: [null, Validators.required],
       carSide: [null, Validators.required],
@@ -48,6 +48,8 @@ export class BugsRepFormComponent implements OnInit {
   }
   clear(){
     this.form.reset();
+    this.today();
+    this.showButter();
   }
   today(): void{
     this.date=new Date();

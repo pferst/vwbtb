@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Pictures } from './pictures.interface';
@@ -14,7 +14,7 @@ export class PicViewComponent implements OnInit, OnDestroy {
   //data for picView
   viewForm: Pictures;
   viewSub: Subscription;
-  path: string ='a';
+  path: string ='';
 
   //
   
