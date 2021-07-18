@@ -1,7 +1,7 @@
 <form [formGroup]="form" class = "sideForm">
   <!-- Space-->
   <mat-card>
-    <mat-card-title>Obszar</mat-card-title>
+    <mat-card-title><mat-icon>timeline</mat-icon> Obszar</mat-card-title>
     <mat-card-content>
       <mat-form-field appearance="fill">
         <mat-label>Wybierz etap procesu</mat-label>
@@ -17,7 +17,7 @@
   </mat-card><br/>
   <!-- Date-->
   <mat-card>
-    <mat-card-title>Data</mat-card-title>
+    <mat-card-title><mat-icon>calendar_today</mat-icon> Data</mat-card-title>
     <mat-card-content>
       <mat-form-field appearance="fill">
         <mat-label>Wybierz datę</mat-label>
@@ -30,7 +30,7 @@
   </mat-card><br/>
   <!-- Info about car-->
   <mat-card>
-    <mat-card-title>Auto</mat-card-title>
+    <mat-card-title><mat-icon> directions_car</mat-icon> Auto</mat-card-title>
     <mat-card-content>
       <!-- Model -->
       <div> Podaj ID pojazdu</div>
@@ -59,7 +59,7 @@
   </mat-card><br/>
   <!-- Errors -->
   <mat-card>
-    <mat-card-title>Błąd</mat-card-title>
+    <mat-card-title><mat-icon>error</mat-icon> Błąd</mat-card-title>
     <mat-card-content>
       <div>Wybierz rodzaj błędu</div>
       <mat-form-field appearance="fill">
@@ -81,5 +81,5 @@
 <span class="fillFreeSpaceVertical"></span>
 <button mat-raised-button (click)="clear()"><mat-icon>clear</mat-icon> Wyczyść</button>
 <span class="fillMoreSpaceVertical"></span>
-<button mat-raised-button type="submit" [disabled]="!form.valid" class="submitButton"><mat-icon>create</mat-icon> Zapisz</button>
+<button mat-raised-button type="submit" [disabled]="!form.valid" class="submitButton"><mat-icon>send</mat-icon> Zapisz</button>
 </form>

@@ -47,13 +47,15 @@ export class BugsRepFormComponent implements OnInit {
     this.injectionsData = injections;
   }
   clear(){
-
+    this.form.reset();
   }
   today(): void{
     this.date=new Date();
+    this.form.patchValue({
+      date: this.date
+   });
   }
   showButter(){
     this.viewButter.emit(this.form.value);
-    //console.log('from: ',this.form.value);
   }
 }
