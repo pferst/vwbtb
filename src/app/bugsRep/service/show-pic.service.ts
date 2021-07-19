@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { pictures } from '../component/pic-view/pictures';
 import { Pictures } from '../component/pic-view/pictures.interface';
 import { ErrCoordinates } from 'src/app/_data/coordinates.interface';
+import { last } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class ShowPicService {
 
   private errPositionSource = new BehaviorSubject<ErrCoordinates[]>(null);
   errPos$ = this.errPositionSource.asObservable();
+
   constructor() { }
 
   showButterPic(viewForm: Pictures)
@@ -37,8 +39,34 @@ export class ShowPicService {
       this.chosen.path='';
     }
     this.butterflySource.next(this.chosen);
+    
   }
   insertError(errPos: [ErrCoordinates, {width: number, height: number}]){
-    //last = localStorage.getItem('last');
+    
+    const read = localStorage.getItem('last');
+    let last : ErrCoordinates[] = [];
+    if(read){
+      last = JSON.parse(read);
+    }
+    let currentPositions: ErrCoordinates[] = [];
+    if(errPos[0].x)
+    {
+      const x = errPos[0].x*1320/errPos[1].width;
+      const y = errPos[0].y*900/errPos[1].height;
+      const saved: ErrCoordinates = {x: x, y: y};
+      last.push(saved);
+    }
+    for(let i = 0; i < last.length; i++)
+    {
+      const x = last[i].x*errPos[1].width/1320-(3*errPos[1].width)/1320;
+      const y = last[i].y*errPos[1].height/900+35-(3*errPos[1].height)/900;
+      //size of point
+      const psx = 6*errPos[1].width/1320;
+      const psy = 6*errPos[1].height/900;
+      const curr: ErrCoordinates = {x: x, y: y, pointSizeX: psx, pointSizeY: psy};
+      currentPositions.push(curr);
+    }
+    this.errPositionSource.next(currentPositions);
+    localStorage.setItem('last', JSON.stringify(last));
   }
 }

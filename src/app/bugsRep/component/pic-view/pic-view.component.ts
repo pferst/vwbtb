@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnDestroy, OnInit, ElementRef, AfterViewInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, ViewChild, OnDestroy, OnInit, ElementRef, Output, EventEmitter, Input, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Pictures } from './pictures.interface';
@@ -10,7 +10,7 @@ import { ErrCoordinates } from 'src/app/_data/coordinates.interface';
   templateUrl: './pic-view.component.html',
   styleUrls: ['./pic-view.component.scss']
 })
-export class PicViewComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PicViewComponent implements OnInit, OnDestroy {
   
   //data for picView
   viewForm: Pictures;
@@ -24,7 +24,7 @@ export class PicViewComponent implements OnInit, OnDestroy, AfterViewInit {
   temp: ErrCoordinates;
   y: number;
   x: number;
-  @Input() errArr: any[];
+  @Input() errArr: ErrCoordinates[];
 
   constructor(private picForm: ShowPicService) { }
 
@@ -45,28 +45,40 @@ export class PicViewComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewSub.unsubscribe();
     this.butterFlagPath=false;
   }
-  ngAfterViewInit(): void{
-    if(this.path)
-    {
-      let width = this.imgId.nativeElement.offsetWidth;
-      let height = this.imgId.nativeElement.offsetHeight;
-      console.log('Width:' + width);
-      console.log('Height: ' + height);
-    }
+  @HostListener('document:fullscreenchange')
+  @HostListener('webkitfullscreenchange')
+  @HostListener('mozfullscreenchange')
+  @HostListener('MSFullscreenChange')
+  @HostListener('window:resize')
+  async onResize() {
+    await new Promise(f => setTimeout(f, 500));
+    if(this.imgId) this.putErrImg();
   }
-  putErrImg(event: MouseEvent)
+  putErrImg(event?: MouseEvent)
   {
     //console.log('x offset: ', event.offsetX);
     //console.log('y offset: ', event.offsetY);
     let width: number = this.imgId.nativeElement.offsetWidth;
     let height: number = this.imgId.nativeElement.offsetHeight;
-    this.position = [
-      {
-        x: event.offsetX,
-        y: event.offsetY,
-      },
-      {width: width, height: height}
-    ];
+    if(event)
+    {
+      this.position = [
+        {
+          x: event.offsetX,
+          y: event.offsetY,
+        },
+        {width: width, height: height}
+      ];
+    }
+    else{
+      this.position = [
+        {
+          x: null,
+          y: null,
+        },
+        {width: width, height: height}
+      ];
+    }
     //console.log(this.position);
     this.coordinates.emit(this.position);
   }
