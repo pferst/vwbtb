@@ -8,6 +8,7 @@ import { StatsComponent } from '../../component/stats/stats.component';
 import { FormGroup } from '@angular/forms';
 import { Pictures } from '../../component/pic-view/pictures.interface';
 import { pictures } from '../../component/pic-view/pictures';
+import { ErrCoordinates } from 'src/app/_data/coordinates.interface';
 
 @Component({
   selector: 'app-main-view',
@@ -28,9 +29,13 @@ export class MainViewContainer implements OnInit, OnDestroy {
   viewForm: Pictures;
   viewSub: Subscription;
   //
+  //data for errors on butterflies
+  errPosSubsrciption$: Subscription;
+  errPos: ErrCoordinates[];
+  //
   @Output() sideForm = new EventEmitter<HTMLElement>();
   transportViewForm: Pictures;
-  constructor(private data: SideFormActionService, private picForm: ShowPicService ) { }
+  constructor(private data: SideFormActionService, private picForm: ShowPicService) { }
 
   ngOnInit(): void {
     this.subscription = this.data.currentAction.subscribe(action => {
@@ -41,10 +46,12 @@ export class MainViewContainer implements OnInit, OnDestroy {
       }
     });
     this.viewSub = this.picForm.butterfly$.subscribe(viewForm => this.viewForm = viewForm);
+    this.errPosSubsrciption$ = this.picForm.errPos$.subscribe(errPos => this.errPos = errPos);
   }
   ngOnDestroy(): void{
     this.subscription.unsubscribe();
     this.viewSub.unsubscribe();
+    this.errPosSubsrciption$.unsubscribe();
   }
   closeForm()
   {
@@ -61,5 +68,8 @@ export class MainViewContainer implements OnInit, OnDestroy {
   showPic($event){
     this.transportViewForm = {name: $event.carType, side: $event.carSide, path: ''};
     this.picForm.showButterPic(this.transportViewForm);
+  }
+  errPosition($event){
+    this.picForm.insertError($event);
   }
 }

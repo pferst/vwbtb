@@ -4,6 +4,9 @@
     <button mat-button *ngIf="path" class="button"><mat-icon>clear</mat-icon></button>
     <button mat-button *ngIf="path" class="button"><mat-icon>redo</mat-icon></button>
     </span>
-    <img src='{{path}}' alt="Brak zdjęcia" *ngIf="path"/>
-    <h3 class="center" *ngIf="!path">Aby wyświetlić motyl należy wypełnić formularz</h3>
+    <span #car>
+    <img *ngIf="path" [src]='path' alt="Brak zdjęcia" (click)="putErrImg($event)"/>
+    <img *ngFor="let err of errArr" [src]='err.path' class="points" [ngStyle]="{top: err.y, left: err.x}"/>
+    </span>
+    <h3 *ngIf="!path" class="center">Aby wyświetlić motyl należy wypełnić formularz</h3>
 </section>

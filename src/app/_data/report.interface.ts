@@ -1,3 +1,4 @@
+import { ErrCoordinates } from "./coordinates.interface";
 export interface Report{
     id: string,
     date: Date,
@@ -6,5 +7,5 @@ export interface Report{
     carSide: string,
     errType: string,
     errInclusion: string,
-    errCoordinates: Array<number>
+    errCoordinates: ErrCoordinates[]
 }

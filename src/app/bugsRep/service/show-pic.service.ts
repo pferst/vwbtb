@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { pictures } from '../component/pic-view/pictures';
 import { Pictures } from '../component/pic-view/pictures.interface';
+import { ErrCoordinates } from 'src/app/_data/coordinates.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,9 @@ export class ShowPicService {
   private butterflySource = new BehaviorSubject<Pictures>(this.chosen);
   private pathFlag: boolean = false;
   butterfly$ = this.butterflySource.asObservable();
+
+  private errPositionSource = new BehaviorSubject<ErrCoordinates[]>(null);
+  errPos$ = this.errPositionSource.asObservable();
   constructor() { }
 
   showButterPic(viewForm: Pictures)
@@ -33,5 +37,8 @@ export class ShowPicService {
       this.chosen.path='';
     }
     this.butterflySource.next(this.chosen);
+  }
+  insertError(errPos: [ErrCoordinates, {width: number, height: number}]){
+    //last = localStorage.getItem('last');
   }
 }
