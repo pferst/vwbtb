@@ -19,6 +19,8 @@ export class BugsRepFormComponent implements OnInit {
   form: FormGroup;
   @Output() viewButter = new EventEmitter<FormGroup>();
   date: Date;
+  saved: boolean;
+
   constructor(private fb: FormBuilder, private dateAdapter: DateAdapter<Date>) {
     this.dateAdapter.setLocale('pl');
     this.date=new Date();

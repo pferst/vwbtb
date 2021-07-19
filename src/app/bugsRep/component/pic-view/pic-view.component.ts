@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnDestroy, OnInit, ElementRef, AfterViewInit, Output, EventEmitter, Renderer2, Input } from '@angular/core';
+import { Component, ViewChild, OnDestroy, OnInit, ElementRef, AfterViewInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Pictures } from './pictures.interface';
@@ -16,6 +16,7 @@ export class PicViewComponent implements OnInit, OnDestroy, AfterViewInit {
   viewForm: Pictures;
   viewSub: Subscription;
   path: string ='';
+  butterFlagPath: boolean;
   //
   @ViewChild('car') imgId: ElementRef;
   @Output() coordinates = new EventEmitter<[ErrCoordinates, {width: number, height: number}]>();
@@ -25,11 +26,11 @@ export class PicViewComponent implements OnInit, OnDestroy, AfterViewInit {
   x: number;
   @Input() errArr: any[];
 
-  constructor(private picForm: ShowPicService, private renderer: Renderer2) { }
+  constructor(private picForm: ShowPicService) { }
 
   ngOnInit(): void {
     this.viewSub = this.picForm.butterfly$.subscribe(viewForm => {
-        if(!!viewForm)
+        if(!!viewForm && this.butterFlagPath)
         {
           this.viewForm = viewForm;
           this.path = this.viewForm.path;
@@ -38,9 +39,11 @@ export class PicViewComponent implements OnInit, OnDestroy, AfterViewInit {
           this.path = '';
         }
       });
+    this.butterFlagPath=true;
   }
   ngOnDestroy(): void{
     this.viewSub.unsubscribe();
+    this.butterFlagPath=false;
   }
   ngAfterViewInit(): void{
     if(this.path)
@@ -64,24 +67,7 @@ export class PicViewComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       {width: width, height: height}
     ];
-    this.temp = {
-      x: event.offsetX,
-      y: event.offsetY,
-    };
-    this.y=this.temp.y;
-    this.x=this.temp.x;
     //console.log(this.position);
     this.coordinates.emit(this.position);
-    const newErr={
-      top: this.y,
-      left: this.x,
-      width: "6px",
-      height: "6px"
-    };
-    const d2 = this.renderer.createElement('img');
-    this.renderer.setAttribute(d2, 'src', '../../../../assets/graphics/points/-.jpg');
-    this.renderer.setAttribute(d2, 'class', 'points');
-    //this.renderer.setAttribute(d2, '[ngStyle]', 'newErr');
-    this.renderer.appendChild(this.imgId.nativeElement, d2);
   }
 }
