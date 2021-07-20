@@ -3,7 +3,7 @@ import { Injection } from "./errInjection.interface";
 export const injections: Injection[]=[
     {
         id: 26,
-        name: '-'
+        name: '-',
     },
     {
         id: 1,

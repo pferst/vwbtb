@@ -58,8 +58,8 @@ export class ShowPicService {
     }
     for(let i = 0; i < last.length; i++)
     {
-      const x = last[i].x*errPos[1].width/1320-(3*errPos[1].width)/1320;
-      const y = last[i].y*errPos[1].height/900+35-(3*errPos[1].height)/900;
+      const x = last[i].x*errPos[1].width/1320-(2*errPos[1].width)/1320;
+      const y = last[i].y*errPos[1].height/900+35-(2*errPos[1].height)/900;
       //size of point
       const psx = 6*errPos[1].width/1320;
       const psy = 6*errPos[1].height/900;

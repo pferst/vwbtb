@@ -60,6 +60,12 @@ export class BugsRepFormComponent implements OnInit {
    });
   }
   showButter(){
+    if(this.form.value.errType!='wtrącenia')
+    {
+      this.form.patchValue({
+        injType: '-'
+     });
+    }
     this.viewButter.emit(this.form.value);
   }
 }

@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { Pictures } from './pictures.interface';
 import { ShowPicService } from '../../service/show-pic.service';
 import { ErrCoordinates } from 'src/app/_data/coordinates.interface';
+import { ResizedEvent } from 'angular-resize-event';
+
 
 @Component({
   selector: 'app-pic-view',
@@ -53,6 +55,10 @@ export class PicViewComponent implements OnInit, OnDestroy {
   async onResize() {
     await new Promise(f => setTimeout(f, 500));
     if(this.imgId) this.putErrImg();
+  }
+  onResized(event: ResizedEvent) {
+    //await new Promise(f => setTimeout(f, 500));
+    //if(this.imgId) this.putErrImg();
   }
   putErrImg(event?: MouseEvent)
   {

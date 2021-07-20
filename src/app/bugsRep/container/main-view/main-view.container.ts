@@ -64,7 +64,6 @@ export class MainViewContainer implements OnInit, OnDestroy {
     {
       this.formOpened=true;
     }
-    this.picView.onResize();
   }
   showPic($event){
     this.transportViewForm = {name: $event.carType, side: $event.carSide, path: ''};
