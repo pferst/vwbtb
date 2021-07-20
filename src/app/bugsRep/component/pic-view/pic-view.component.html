@@ -6,7 +6,7 @@
     </span>
     <div>
     <img *ngIf="path" #car [src]='path' alt="Brak zdjęcia" (click)="putErrImg($event)"/>
-    <img *ngFor="let err of errArr" src="../../../../assets/graphics/points/-.jpg" class="points" [ngStyle]="{'top.px': err.y, 'left.px': err.x, 'width.px': err.pointSizeX, 'height': err.pointSizeY}"/><!-- [src]='err.path'-->
+    <img *ngFor="let err of errArr" [src]='err.path' class="points" [ngStyle]="{'top.px': err.y, 'left.px': err.x, 'width.px': err.pointSizeX, 'height': err.pointSizeY}"/><!-- [src]='err.path'-->
     </div>
     <h3 *ngIf="!path" class="center">Aby wyświetlić motyl należy wypełnić formularz</h3>
 </section>

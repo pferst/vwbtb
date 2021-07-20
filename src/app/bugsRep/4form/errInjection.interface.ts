@@ -1,4 +1,5 @@
 export interface Injection{
     id: number,
-    name: string
+    name: string,
+    path: string
 }

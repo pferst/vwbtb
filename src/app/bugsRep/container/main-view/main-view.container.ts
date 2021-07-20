@@ -34,7 +34,7 @@ export class MainViewContainer implements OnInit, OnDestroy {
   errPos: ErrCoordinates[];
   //
   @Output() sideForm = new EventEmitter<HTMLElement>();
-  transportViewForm: Pictures;
+  transportViewForm: FormGroup;
   constructor(private data: SideFormActionService, private picForm: ShowPicService) { }
 
   ngOnInit(): void {
@@ -67,7 +67,7 @@ export class MainViewContainer implements OnInit, OnDestroy {
     this.picView.onResize();
   }
   showPic($event){
-    this.transportViewForm = {name: $event.carType, side: $event.carSide, path: ''};
+    this.transportViewForm = $event;
     this.picForm.showButterPic(this.transportViewForm);
   }
   errPosition($event){

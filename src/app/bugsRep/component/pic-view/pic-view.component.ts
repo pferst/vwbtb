@@ -52,7 +52,7 @@ export class PicViewComponent implements OnInit, OnDestroy {
   @HostListener('MSFullscreenChange')
   @HostListener('window:resize')
   async onResize() {
-    await new Promise(f => setTimeout(f, 500));
+    await new Promise(f => setTimeout(f, 250));
     if(this.imgId) this.putErrImg();
   }
   putErrImg(event?: MouseEvent)
@@ -67,6 +67,7 @@ export class PicViewComponent implements OnInit, OnDestroy {
         {
           x: event.offsetX,
           y: event.offsetY,
+          path: ''
         },
         {width: width, height: height}
       ];
@@ -76,6 +77,7 @@ export class PicViewComponent implements OnInit, OnDestroy {
         {
           x: null,
           y: null,
+          path: ''
         },
         {width: width, height: height}
       ];

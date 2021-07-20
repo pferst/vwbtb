@@ -4,7 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 import { pictures } from '../component/pic-view/pictures';
 import { Pictures } from '../component/pic-view/pictures.interface';
 import { ErrCoordinates } from 'src/app/_data/coordinates.interface';
-import { last } from 'rxjs/operators';
+import { errors } from '../4form/errTypes';
+import { injections  } from '../4form/errInjection';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +21,16 @@ export class ShowPicService {
   private errPositionSource = new BehaviorSubject<ErrCoordinates[]>(null);
   errPos$ = this.errPositionSource.asObservable();
 
+  errPath: string = '';
+
   constructor() { }
 
-  showButterPic(viewForm: Pictures)
+  showButterPic(viewForm: any)
   {
     this.pathFlag=false;
     for(let i=0;i<pictures.length;i++)
     {
-      if(pictures[i].name==viewForm.name && viewForm.side==pictures[i].side)
+      if(pictures[i].name==viewForm.carType && viewForm.carSide==pictures[i].side)
       {
         this.chosen.path=pictures[i].path;
         this.pathFlag=true;
@@ -39,7 +42,29 @@ export class ShowPicService {
       this.chosen.path='';
     }
     this.butterflySource.next(this.chosen);
-    
+    //only to set the error or/and injection path
+    this.errPath='';
+    if(viewForm.errType==='wtrącenia')
+    {
+      this.errPath=errors[0].path;
+      for(let i = 0; i < injections.length; i++)
+      {
+        if(injections[i].name == viewForm.injType)
+        {
+          this.errPath+=injections[i].path;
+        }
+      }
+    }
+    else
+    {
+      for(let i = 0; i < errors.length; i++)
+      {
+        if(errors[i].name == viewForm.errType)
+        {
+          this.errPath=errors[i].path;
+        }
+      }
+    }
   }
   insertError(errPos: [ErrCoordinates, {width: number, height: number}]){
     
@@ -53,7 +78,7 @@ export class ShowPicService {
     {
       const x = errPos[0].x*1320/errPos[1].width;
       const y = errPos[0].y*900/errPos[1].height;
-      const saved: ErrCoordinates = {x: x, y: y};
+      const saved: ErrCoordinates = {x: x, y: y, path: this.errPath};
       last.push(saved);
     }
     for(let i = 0; i < last.length; i++)
@@ -63,7 +88,7 @@ export class ShowPicService {
       //size of point
       const psx = 6*errPos[1].width/1320;
       const psy = 6*errPos[1].height/900;
-      const curr: ErrCoordinates = {x: x, y: y, pointSizeX: psx, pointSizeY: psy};
+      const curr: ErrCoordinates = {x: x, y: y, path: last[i].path, pointSizeX: psx, pointSizeY: psy};
       currentPositions.push(curr);
     }
     this.errPositionSource.next(currentPositions);

@@ -4,105 +4,131 @@ export const injections: Injection[]=[
     {
         id: 26,
         name: '-',
+        path: '-.jpg'
     },
     {
         id: 1,
-        name: 'koagulat'
+        name: 'koagulat',
+        path: 'koagulat.jpg'
     },
     {
         id: 2,
-        name: 'perła'
+        name: 'perła',
+        path: 'perla.jpg'
     },
     {
         id: 3,
-        name: 'metal'
+        name: 'metal',
+        path: 'metal.jpg'
     },
     {
         id: 4,
-        name: 'czarny klej'
+        name: 'czarny klej',
+        path: 'czarny klej.jpg'
     },
     {
         id: 5,
-        name: 'cząstka KTL'
+        name: 'cząstka KTL',
+        path: 'czastka KTL.jpg'
     },
     {
         id: 6,
-        name: 'cząstki brązowe'
+        name: 'cząstki brązowe',
+        path: 'czastki brazowe.jpg'
     },
     {
         id: 7,
-        name: 'Cu'
+        name: 'Cu',
+        path: 'Cu.jpg'
     },
     {
         id: 8,
-        name: 'fosforany'
+        name: 'fosforany',
+        path: 'fosforany.jpg'
     },
     {
         id: 9,
-        name: 'cząstki czarne'
+        name: 'cząstki czarne',
+        path: 'czastki czarne.jpg'
     },
     {
         id: 10,
-        name: 'cząstki szare'
+        name: 'cząstki szare',
+        path: 'czastki szare.jpg'
     },
     {
         id: 11,
-        name: 'metal'
+        name: 'metal',
+        path: 'metal.jpg'
     },
     {
         id: 12,
-        name: 'cząstki brązowe'
+        name: 'cząstki brązowe',
+        path: 'czastki brazowe.jpg'
     },
     {
         id: 13,
-        name: 'czarne + metal'
+        name: 'czarne + metal',
+        path: 'czarne+metal.jpg'
     },
     {
         id: 14,
-        name: 'szare + metal'
+        name: 'szare + metal',
+        path: 'szare+metal.jpg'
     },
     {
         id: 15,
-        name: 'cząstki FL'
+        name: 'cząstki FL',
+        path: 'czastki FL.jpg'
     },
     {
         id: 16,
-        name: 'podFL'
+        name: 'pod FL',
+        path: 'pod FL.jpg'
     },
     {
         id: 17,
-        name: 'włókno'
+        name: 'włókno',
+        path: 'wlokno.jpg'
     },
-    {
+/*     {
         id: 18,
-        name: 'klej'
-    },
+        name: 'klej',
+        path: ''
+    }, */
     {
         id: 19,
-        name: 'PVC'
+        name: 'PVC',
+        path: 'PVC.jpg'
     },
     {
         id: 20,
-        name: 'włókno niebieskie'
+        name: 'włókno niebieskie',
+        path: 'wlokno niebieski.jpg'
     },
     {
         id: 21,
-        name: 'cząstki BC'
+        name: 'cząstki BC',
+        path: 'czastki BC.jpg'
     },
     {
         id: 22,
-        name: 'zelka'
+        name: 'zelka',
+        path: 'zelka.jpg'
     },
     {
         id: 23,
-        name: 'multikolor'
+        name: 'multikolor',
+        path: 'multikolor.jpg'
     },
     {
         id: 24,
-        name: 'pręgi'
+        name: 'pręgi',
+        path: 'pregi.jpg'
     },
     {
         id: 25,
-        name: 'zabrudzenie PVC'
+        name: 'zabrudzenie PVC',
+        path: 'Zabrudzenie PVC.jpg'
     }
 ]

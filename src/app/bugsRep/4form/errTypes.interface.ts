@@ -1,4 +1,5 @@
 export interface ErrTypes{
     id: number,
-    name: string
+    name: string,
+    path: string
 }
