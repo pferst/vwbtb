@@ -25,7 +25,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { StatsComponent } from './bugsRep/component/stats/stats.component';
 import { MainViewContainer } from './bugsRep/container/main-view/main-view.container';
-import { AngularResizedEventModule } from 'angular-resize-event';
 
 
 
@@ -58,8 +57,7 @@ import { AngularResizedEventModule } from 'angular-resize-event';
     MatCardModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatNativeDateModule,
-    AngularResizedEventModule
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

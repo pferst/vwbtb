@@ -19,7 +19,7 @@ import { ErrCoordinates } from 'src/app/_data/coordinates.interface';
 export class MainViewContainer implements OnInit, OnDestroy {
 
   @ViewChild('sidenav') sidenav: MatSidenav;
-
+  @ViewChild('view') picView: PicViewComponent;
   //data for open and close form in sidenav
   action: boolean;
   subscription: Subscription;
@@ -35,7 +35,7 @@ export class MainViewContainer implements OnInit, OnDestroy {
   //
   @Output() sideForm = new EventEmitter<HTMLElement>();
   transportViewForm: Pictures;
-  constructor(private data: SideFormActionService, private picForm: ShowPicService, private picView: PicViewComponent) { }
+  constructor(private data: SideFormActionService, private picForm: ShowPicService) { }
 
   ngOnInit(): void {
     this.subscription = this.data.currentAction.subscribe(action => {
@@ -64,6 +64,7 @@ export class MainViewContainer implements OnInit, OnDestroy {
     {
       this.formOpened=true;
     }
+    this.picView.onResize();
   }
   showPic($event){
     this.transportViewForm = {name: $event.carType, side: $event.carSide, path: ''};
