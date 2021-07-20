@@ -1,4 +1,6 @@
 export interface ErrCoordinates{
+    carPart?: string,
+    carLR?: string,
     errType?: string,
     injType?: string,
     x: number,

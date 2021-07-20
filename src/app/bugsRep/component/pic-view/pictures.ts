@@ -23,7 +23,7 @@ export const pictures: Pictures[] = [
     {
         name: 'Kombi',
         side: 'wew',
-        path: '../../../../assets/graphics/butterflies/carType/kombi/ButterflyKOMBIzew.bmp'
+        path: '../../../../assets/graphics/butterflies/carType/kombi/ButterflyKOMBIwew.bmp'
     },
     {
         name: 'Kombi',

@@ -38,11 +38,13 @@ export class BugsRepFormComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       id: [null, Validators.required],
+      carColor: [null, Validators.required],
       date: [new Date(), Validators.required],
       procStage: [null, Validators.required],
       carType: [null, Validators.required],
       carSide: [null, Validators.required],
       carPart: [null, Validators.required],
+      lr: [null, Validators.required],
       errType: [null, Validators.required],
       injType: [null, Validators.required]
     });

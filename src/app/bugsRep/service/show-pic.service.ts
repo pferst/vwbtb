@@ -6,6 +6,7 @@ import { Pictures } from '../component/pic-view/pictures.interface';
 import { ErrCoordinates } from 'src/app/_data/coordinates.interface';
 import { errors } from '../4form/errTypes';
 import { injections  } from '../4form/errInjection';
+import { Report } from 'src/app/_data/report.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,8 @@ export class ShowPicService {
   errPath: string = '';
   injType: string = '-';
   errType: string = '';
+  //previous form
+  prevForm: any;
 
   constructor() { }
 
@@ -73,6 +76,34 @@ export class ShowPicService {
         }
       }
     }
+    if(this.prevForm)
+    {
+      if(this.prevForm.id!=viewForm.id || this.prevForm.carColor!=viewForm.carColor || this.prevForm.date!=viewForm.date || this.prevForm.procStage!=viewForm.procStage || this.prevForm.carType!=viewForm.carType || this.prevForm.carSide!=viewForm.carSide)
+      {
+        this.saveReport(this.prevForm);
+      }
+    }
+  }
+  saveReport(formVals: any)
+  {
+    const read = localStorage.getItem('last');
+    const reported = localStorage.getItem('Reports');
+    let last : ErrCoordinates[] = [];
+    if(read){
+      last = JSON.parse(read);
+      localStorage.removeItem('last');
+    }
+    let reports: Report[] = [];
+    if(reported){
+      reports = JSON.parse(reported);
+    }
+    let newReport: Report;
+    newReport.id = formVals.id;
+    newReport.carColor=formVals.carColor;
+    newReport.date=formVals.date;
+    newReport.procStage=formVals.procStage;
+    newReport.carType=formVals.carType;
+    newReport.carSide=formVals.carSide;
   }
   insertError(errPos: [ErrCoordinates, {width: number, height: number}]){
     
@@ -107,5 +138,95 @@ export class ShowPicService {
     }
     this.errPositionSource.next(currentPositions);
     localStorage.setItem('last', JSON.stringify(last));
+  }
+  recognizePart(position: Array<any>, carType: string, carSide): string{
+    const type = carType.toLowerCase();
+    let answer='';
+    if(carSide=='wew')
+    {
+      switch(type){
+        case 'doka': {
+          /*part list
+          1. maska
+          2. Prawy bok
+          3. lewy bok
+          4. podłoga
+          5. dach
+          6. klapka wlewu
+          7. tylna ścianka
+          8. drzwi przednie prawe
+          9. drzwi przednie lewe
+          10. drzwi prawe
+          11. drzwi lewe
+          */
+          if(position[0]>=0 && position[0]<=183 && position[1]>=270 && position[1]<=628)
+          {
+            answer='maska';
+
+          }else if(position[0]>=207 && position[0]<=646 && position[1]>=0 && position[1]<=300)
+          {
+            answer = 'prawy bok';
+
+          }else if(position[0]>=207 && position[0]<=646 && position[1]>=591 && position[1]<=900)
+          {
+            answer = 'lewy bok';
+
+          }else if(position[0]>=207 && position[0]<=646 && position[1]>300 && position[1]<591)
+          {
+            answer = 'podłoga';
+
+          }else if(position[0]>646 && position[0]<=948 && position[1]>300 && position[1]<591)
+          {
+            answer = 'dach';
+          }
+          break;
+        }
+        case 'kombi': {
+          /*part list
+          
+          */
+          break;
+        }
+        case 'kasten': {
+          /*part list
+          
+          */
+          break;
+        }
+      }
+    }
+    else{
+      switch(type){
+        case 'doka': {
+          /*part list
+          1. maska
+          2. Prawy bok
+          3. podłoga góra
+          5. klapka wlewu
+          4. lewy bok
+          6. tylna ścianka
+          7. drzwi przednie prawe
+          8. drzwi przednie lewe
+          9. drzwi prawe
+          10. drzwi lewe
+          */
+          
+          break;
+        }
+        case 'kombi': {
+          /*part list
+          
+          */
+          break;
+        }
+        case 'kasten': {
+          /*part list
+          
+          */
+          break;
+        }
+      }
+    }
+    return answer;
   }
 }
