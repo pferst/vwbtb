@@ -22,6 +22,8 @@ export class ShowPicService {
   errPos$ = this.errPositionSource.asObservable();
 
   errPath: string = '';
+  injType: string = '-';
+  errType: string = '';
 
   constructor() { }
 
@@ -46,22 +48,28 @@ export class ShowPicService {
     this.errPath='';
     if(viewForm.errType==='wtrącenia')
     {
+      this.errType='wtrącenia';
       this.errPath=errors[0].path;
       for(let i = 0; i < injections.length; i++)
       {
         if(injections[i].name == viewForm.injType)
         {
+          this.injType=injections[i].name;
           this.errPath+=injections[i].path;
+          break;
         }
       }
     }
     else
     {
+      this.injType='-';
       for(let i = 0; i < errors.length; i++)
       {
         if(errors[i].name == viewForm.errType)
         {
+          this.errType=errors[i].name;
           this.errPath=errors[i].path;
+          break;
         }
       }
     }
@@ -78,7 +86,13 @@ export class ShowPicService {
     {
       const x = errPos[0].x*1320/errPos[1].width;
       const y = errPos[0].y*900/errPos[1].height;
-      const saved: ErrCoordinates = {x: x, y: y, path: this.errPath};
+      const saved: ErrCoordinates = {
+        errType: this.errType, 
+        injType: this.injType, 
+        x: x, 
+        y: y, 
+        path: this.errPath
+      };
       last.push(saved);
     }
     for(let i = 0; i < last.length; i++)
