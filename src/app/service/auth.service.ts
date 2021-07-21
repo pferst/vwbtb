@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { User } from '../login/interface/user';
@@ -16,7 +17,7 @@ export class AuthService {
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
 
-  constructor() {
+  constructor(private router: Router) {
     this.isLoggedIn$ = this.user$.pipe(map(user => !!user));
     this.isLoggedOut$ = this.user$.pipe(map(user => !user));
     const user = localStorage.getItem('currentUser'); 
@@ -45,8 +46,8 @@ export class AuthService {
 
   logout() 
   {
-    this.subject.next(null);
     localStorage.removeItem('currentUser');
+    this.router.navigateByUrl('/login');
   }
 /*   isAuthenticated(){
     const currUser = JSON.parse(localStorage.getItem('currentUser'));

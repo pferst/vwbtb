@@ -4,5 +4,5 @@
     <span class="fillFreSpace"></span>
     <app-tabs [links]="links" (tabEvent)="transferToContainer($event)"></app-tabs>
     <span class="fillFreSpace"></span>
-    <h2 class="centerIconText" (click)="logout()"><mat-icon>logout</mat-icon><span class="littleSpace"></span>Wyloguj się</h2>
+    <button mat-icon-button (click)="logout()"><h2 class="centerIconText"><mat-icon>logout</mat-icon><span class="littleSpace"></span> Wyloguj się</h2></button>
 </mat-toolbar>

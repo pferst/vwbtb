@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { PicViewComponent } from '../../component/pic-view/pic-view.component';
 import { StatsComponent } from '../../component/stats/stats.component';
 import { MainViewContainer } from '../main-view/main-view.container';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-bugs-rep',
@@ -32,7 +33,7 @@ export class BugsRepContainer implements OnInit, OnDestroy {
     }
   ];
   activetedLink: number;
-  constructor(private route: ActivatedRoute, public router: Router, private data: SideFormActionService) {
+  constructor(private route: ActivatedRoute, public router: Router, private data: SideFormActionService, private auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -48,5 +49,8 @@ export class BugsRepContainer implements OnInit, OnDestroy {
   }
   closeOrOpenForm($event): void{
     this.data.changeStatus($event);
+  }
+  logout(){
+    this.auth.logout();
   }
 }
