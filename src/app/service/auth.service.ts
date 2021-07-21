@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { User } from '../login/interface/user';
+import { DialogLogoutComponent } from '../dialog-logout/dialog-logout.component';
+import { MatDialog } from '@angular/material/dialog';
 
 const currentUser: User = {login: '', password: ''};
 @Injectable({
@@ -17,7 +19,7 @@ export class AuthService {
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public dialog: MatDialog) {
     this.isLoggedIn$ = this.user$.pipe(map(user => !!user));
     this.isLoggedOut$ = this.user$.pipe(map(user => !user));
     const user = localStorage.getItem('currentUser'); 
@@ -46,6 +48,11 @@ export class AuthService {
 
   logout() 
   {
+    const read = localStorage.getItem('last');
+    if(read!=null && read.length>0){
+      this.dialog.open(DialogLogoutComponent);
+      return; 
+    }
     localStorage.removeItem('currentUser');
     this.router.navigateByUrl('/login');
   }

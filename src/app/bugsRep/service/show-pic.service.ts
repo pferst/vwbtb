@@ -45,6 +45,7 @@ export class ShowPicService {
       {
         this.saveReport(this.prevForm);
         this.insertError([null, null]);
+        localStorage.removeItem('last');
       }
     }
     this.prevForm = viewForm;
@@ -102,6 +103,7 @@ export class ShowPicService {
     if(read!=null && read.length>0){
       lastRep = JSON.parse(read);
       localStorage.removeItem('last');
+      console.log("dupa");
     }
     else{
       return;
@@ -142,6 +144,7 @@ export class ShowPicService {
     }
     localStorage.setItem('Reports', JSON.stringify(reports));
     this.snackBarSource.next(true);
+    this.snackBarSource.next(false);
   }
   // action on click new error on car butterfly
   insertError(errPos: [ErrCoordinates, {width: number, height: number}]){

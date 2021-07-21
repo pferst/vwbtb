@@ -1,10 +1,10 @@
 form{
     position: absolute;
     text-align:center;
-    top: 35vh;
-    width: 16vw;
-    left: 42vw;
-    right: 42vw;
+    top: 29vh;
+    width: 22vw;
+    left: 37.5vw;
+    right: 34vw;
     padding-top: 2vh;
     padding-bottom: 2vh;
 
@@ -12,12 +12,20 @@ form{
     border-radius: 3%;
 }
 .scalableInput{
-    width: 10vw;
+    width: 75%;
     height: 1vh;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+    margin-bottom: 4vh;
+    margin-top: 2vh;
 }
 .submitButton{
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+    margin-top: 3.5vh;
+    width: 75%;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    background-color: rgba(5, 27, 44, 0.9);
+    margin-bottom: 5vh;
+    color: white;
+}
+.littleSpace{
+    margin-left: 6px;
 }
