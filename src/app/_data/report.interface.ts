@@ -6,9 +6,8 @@ export interface Report{
     procStage: string,
     carType: string,
     carSide: string,
-    lr: string,
     errType: string,
     carPart: string,
     errInclusion: string,
-    errCoordinates: ErrCoordinates[]
+    errCoordinates: ErrCoordinates
 }

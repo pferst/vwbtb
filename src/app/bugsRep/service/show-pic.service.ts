@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { pictures } from '../component/pic-view/pictures';
 import { Pictures } from '../component/pic-view/pictures.interface';
@@ -7,6 +6,9 @@ import { ErrCoordinates } from 'src/app/_data/coordinates.interface';
 import { errors } from '../4form/errTypes';
 import { injections  } from '../4form/errInjection';
 import { Report } from 'src/app/_data/report.interface';
+import { from } from 'rxjs';
+import { groupBy, mergeMap, toArray, last } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -25,14 +27,26 @@ export class ShowPicService {
   errPath: string = '';
   injType: string = '-';
   errType: string = '';
+  part: string = '';
   //previous form
-  prevForm: any;
+  prevForm: any = null;
 
   constructor() { }
 
   showButterPic(viewForm: any)
   {
+
+    if(this.prevForm!=null)
+    {
+      if(this.prevForm.id!=viewForm.id || this.prevForm.carColor!=viewForm.carColor || this.prevForm.date!=viewForm.date || this.prevForm.procStage!=viewForm.procStage || this.prevForm.carType!=viewForm.carType || this.prevForm.carSide!=viewForm.carSide)
+      {
+        this.saveReport(this.prevForm);
+        this.insertError([null, null]);
+      }
+    }
+    this.prevForm = viewForm;
     this.pathFlag=false;
+    this.part = viewForm.carPart;
     for(let i=0;i<pictures.length;i++)
     {
       if(pictures[i].name==viewForm.carType && viewForm.carSide==pictures[i].side)
@@ -76,48 +90,70 @@ export class ShowPicService {
         }
       }
     }
-    if(this.prevForm)
-    {
-      if(this.prevForm.id!=viewForm.id || this.prevForm.carColor!=viewForm.carColor || this.prevForm.date!=viewForm.date || this.prevForm.procStage!=viewForm.procStage || this.prevForm.carType!=viewForm.carType || this.prevForm.carSide!=viewForm.carSide)
-      {
-        this.saveReport(this.prevForm);
-      }
-    }
   }
   saveReport(formVals: any)
   {
     const read = localStorage.getItem('last');
     const reported = localStorage.getItem('Reports');
-    let last : ErrCoordinates[] = [];
-    if(read){
-      last = JSON.parse(read);
+    let lastRep : ErrCoordinates[] = [];
+    if(read!=null){
+      lastRep = JSON.parse(read);
       localStorage.removeItem('last');
+    }
+    else{
+      return;
     }
     let reports: Report[] = [];
     if(reported){
       reports = JSON.parse(reported);
     }
-    let newReport: Report;
+    let newReport: Report ={
+      id: null,
+      carColor: '',
+      date: null,
+      procStage: '',
+      carType: '',
+      carSide: '',
+      errType: '',
+      carPart: '',
+      errInclusion: '',
+      errCoordinates: {x: null, y: null}
+    };
     newReport.id = formVals.id;
     newReport.carColor=formVals.carColor;
     newReport.date=formVals.date;
     newReport.procStage=formVals.procStage;
     newReport.carType=formVals.carType;
     newReport.carSide=formVals.carSide;
+    for(let i = 0; i < lastRep.length; i++)
+    {
+      newReport.carPart=lastRep[i].carPart;
+      newReport.errType=lastRep[i].errType;
+      newReport.errInclusion=lastRep[i].injType;
+      const coor: ErrCoordinates = {
+        x: lastRep[i].x,
+        y: lastRep[i].y
+      }
+      newReport.errCoordinates = coor;
+      reports.push(newReport);
+    }
+    localStorage.setItem('Reports', JSON.stringify(reports));
+   
   }
+  // action on click new error on car butterfly
   insertError(errPos: [ErrCoordinates, {width: number, height: number}]){
-    
     const read = localStorage.getItem('last');
     let last : ErrCoordinates[] = [];
     if(read){
       last = JSON.parse(read);
     }
     let currentPositions: ErrCoordinates[] = [];
-    if(errPos[0].x)
+    if(errPos[0]!=null && (errPos[0].x!=null || errPos[0].y!=null))
     {
       const x = errPos[0].x*1320/errPos[1].width;
       const y = errPos[0].y*900/errPos[1].height;
       const saved: ErrCoordinates = {
+        carPart: this.part,
         errType: this.errType, 
         injType: this.injType, 
         x: x, 
@@ -129,11 +165,17 @@ export class ShowPicService {
     for(let i = 0; i < last.length; i++)
     {
       const x = last[i].x*errPos[1].width/1320-(2*errPos[1].width)/1320;
-      const y = last[i].y*errPos[1].height/900+35-(2*errPos[1].height)/900;
+      const y = last[i].y*errPos[1].height/900+35-(2*errPos[1].height)/900;//why that 35 px have to be added
       //size of point
-      const psx = 6*errPos[1].width/1320;
-      const psy = 6*errPos[1].height/900;
-      const curr: ErrCoordinates = {x: x, y: y, path: last[i].path, pointSizeX: psx, pointSizeY: psy};
+      const psx = 12*errPos[1].width/1320;
+      const psy = 12*errPos[1].height/900;
+      const curr: ErrCoordinates = {
+        x: x, 
+        y: y, 
+        path: last[i].path, 
+        pointSizeX: psx, 
+        pointSizeY: psy
+      };
       currentPositions.push(curr);
     }
     this.errPositionSource.next(currentPositions);
@@ -230,3 +272,7 @@ export class ShowPicService {
     return answer;
   }
 }
+function transform(array: any, arg1: any[], arg2: { const: undefined[]; array: any; "": any; return: any; }) {
+  throw new Error('Function not implemented.');
+}
+

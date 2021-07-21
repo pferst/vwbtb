@@ -70,6 +70,10 @@ export class MainViewContainer implements OnInit, OnDestroy {
     this.transportViewForm = $event;
     this.picForm.showButterPic(this.transportViewForm);
   }
+  saveReport($event){
+    this.transportViewForm = $event;
+    this.picForm.saveReport(this.transportViewForm);
+  }
   errPosition($event){
     this.picForm.insertError($event);
   }

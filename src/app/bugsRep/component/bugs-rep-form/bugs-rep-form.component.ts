@@ -18,6 +18,7 @@ export class BugsRepFormComponent implements OnInit {
   injectionsData: Injection[];
   form: FormGroup;
   @Output() viewButter = new EventEmitter<FormGroup>();
+  @Output() saveReport = new EventEmitter<FormGroup>();
   date: Date;
   saved: boolean;
 
@@ -44,7 +45,6 @@ export class BugsRepFormComponent implements OnInit {
       carType: [null, Validators.required],
       carSide: [null, Validators.required],
       carPart: [null, Validators.required],
-      lr: [null, Validators.required],
       errType: [null, Validators.required],
       injType: [null, Validators.required]
     });
@@ -55,6 +55,7 @@ export class BugsRepFormComponent implements OnInit {
     this.form.reset();
     this.today();
     this.showButter();
+
   }
   today(): void{
     this.date=new Date();
@@ -63,12 +64,20 @@ export class BugsRepFormComponent implements OnInit {
    });
   }
   showButter(){
-    if(this.form.value.errType!='wtrącenia')
+    if(this.form.value.errType!='wtrącenia' && this.form.value.errType!=null)
     {
       this.form.patchValue({
         injType: '-'
      });
     }
     this.viewButter.emit(this.form.value);
+  }
+  save(){
+    if(this.form.value.errType!='wtrącenia')
+    {
+      this.form.value.injType = '-';
+    }
+    this.saveReport.emit(this.form.value);
+    this.clear();
   }
 }
