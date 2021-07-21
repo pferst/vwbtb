@@ -54,8 +54,8 @@ export class BugsRepFormComponent implements OnInit {
   clear(){
     this.form.reset();
     this.today();
+    localStorage.removeItem('last');
     this.showButter();
-
   }
   today(): void{
     this.date=new Date();

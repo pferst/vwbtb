@@ -26,6 +26,7 @@ export class PicViewComponent implements OnInit, OnDestroy {
   y: number;
   x: number;
   @Input() errArr: ErrCoordinates[];
+  @Output() removeLastItem = new EventEmitter<any>();
 
   constructor(private picForm: ShowPicService) { }
 
@@ -63,8 +64,6 @@ export class PicViewComponent implements OnInit, OnDestroy {
     let height: number = this.imgId.nativeElement.offsetHeight;
     if(event)
     {
-      console.log(event);
-
       this.position = [
         {
           x: event.offsetX,
@@ -84,7 +83,11 @@ export class PicViewComponent implements OnInit, OnDestroy {
         {width: width, height: height}
       ];
     }
-    //console.log(this.position);
     this.coordinates.emit(this.position);
+  }
+  undoAction(){
+    let width: number = this.imgId.nativeElement.offsetWidth;
+    let height: number = this.imgId.nativeElement.offsetHeight;
+    this.removeLastItem.emit({width: width, height: height});
   }
 }

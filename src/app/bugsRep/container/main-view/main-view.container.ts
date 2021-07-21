@@ -77,4 +77,7 @@ export class MainViewContainer implements OnInit, OnDestroy {
   errPosition($event){
     this.picForm.insertError($event);
   }
+  removeLastItem($event){
+    this.picForm.removeLastItem($event);
+  }
 }

@@ -271,8 +271,14 @@ export class ShowPicService {
     }
     return answer;
   }
-}
-function transform(array: any, arg1: any[], arg2: { const: undefined[]; array: any; "": any; return: any; }) {
-  throw new Error('Function not implemented.');
+  removeLastItem(screenSize){
+    const read = localStorage.getItem('last');
+    if(read){
+      const last = JSON.parse(read);
+      last.pop();
+      localStorage.setItem('last', JSON.stringify(last));
+      this.insertError([null, screenSize]);
+    }
+  }
 }
 
