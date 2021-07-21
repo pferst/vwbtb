@@ -9,6 +9,8 @@ import { FormGroup } from '@angular/forms';
 import { Pictures } from '../../component/pic-view/pictures.interface';
 import { pictures } from '../../component/pic-view/pictures';
 import { ErrCoordinates } from 'src/app/_data/coordinates.interface';
+import {MatSnackBar, MatSnackBarHorizontalPosition} from '@angular/material/snack-bar';
+import { SnackBarComponent } from 'src/app/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-main-view',
@@ -33,9 +35,12 @@ export class MainViewContainer implements OnInit, OnDestroy {
   errPosSubsrciption$: Subscription;
   errPos: ErrCoordinates[];
   //
+  //Data form snack bar
+  snackRefSub: Subscription;
+  //
   @Output() sideForm = new EventEmitter<HTMLElement>();
   transportViewForm: FormGroup;
-  constructor(private data: SideFormActionService, private picForm: ShowPicService) { }
+  constructor(private data: SideFormActionService, private picForm: ShowPicService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.subscription = this.data.currentAction.subscribe(action => {
@@ -47,11 +52,18 @@ export class MainViewContainer implements OnInit, OnDestroy {
     });
     this.viewSub = this.picForm.butterfly$.subscribe(viewForm => this.viewForm = viewForm);
     this.errPosSubsrciption$ = this.picForm.errPos$.subscribe(errPos => this.errPos = errPos);
+    this.snackRefSub = this.picForm.snackBar$.subscribe(saveStatus => {
+      if(saveStatus)
+      {
+        this.openSuccessSnackBar()
+      }
+    });
   }
   ngOnDestroy(): void{
     this.subscription.unsubscribe();
     this.viewSub.unsubscribe();
     this.errPosSubsrciption$.unsubscribe();
+    this.snackRefSub.unsubscribe();
   }
   closeForm()
   {
@@ -79,5 +91,12 @@ export class MainViewContainer implements OnInit, OnDestroy {
   }
   removeLastItem($event){
     this.picForm.removeLastItem($event);
+  }
+  openSuccessSnackBar() {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      duration: 1000,
+      horizontalPosition: 'center',
+      panelClass: ['green-snackbar']
+    });
   }
 }

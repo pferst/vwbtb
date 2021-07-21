@@ -23,6 +23,9 @@ export class ShowPicService {
 
   private errPositionSource = new BehaviorSubject<ErrCoordinates[]>(null);
   errPos$ = this.errPositionSource.asObservable();
+  
+  private snackBarSource = new BehaviorSubject<boolean>(false);
+  snackBar$ = this.snackBarSource.asObservable();
 
   errPath: string = '';
   injType: string = '-';
@@ -96,7 +99,7 @@ export class ShowPicService {
     const read = localStorage.getItem('last');
     const reported = localStorage.getItem('Reports');
     let lastRep : ErrCoordinates[] = [];
-    if(read!=null){
+    if(read!=null && read.length>0){
       lastRep = JSON.parse(read);
       localStorage.removeItem('last');
     }
@@ -138,7 +141,7 @@ export class ShowPicService {
       reports.push(newReport);
     }
     localStorage.setItem('Reports', JSON.stringify(reports));
-   
+    this.snackBarSource.next(true);
   }
   // action on click new error on car butterfly
   insertError(errPos: [ErrCoordinates, {width: number, height: number}]){

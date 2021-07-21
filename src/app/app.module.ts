@@ -25,6 +25,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { StatsComponent } from './bugsRep/component/stats/stats.component';
 import { MainViewContainer } from './bugsRep/container/main-view/main-view.container';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
 
 
 
@@ -39,7 +41,8 @@ import { MainViewContainer } from './bugsRep/container/main-view/main-view.conta
     NavbarComponent,
     TabsComponent,
     StatsComponent,
-    MainViewContainer
+    MainViewContainer,
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { MainViewContainer } from './bugsRep/container/main-view/main-view.conta
     MatCardModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
