@@ -7,6 +7,9 @@ import { PicViewComponent } from '../../component/pic-view/pic-view.component';
 import { StatsComponent } from '../../component/stats/stats.component';
 import { MainViewContainer } from '../main-view/main-view.container';
 import { AuthService } from 'src/app/service/auth.service';
+import { ControlService } from 'src/app/service/control.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogLogoutComponent } from 'src/app/dialog-logout/dialog-logout.component';
 
 @Component({
   selector: 'app-bugs-rep',
@@ -33,7 +36,12 @@ export class BugsRepContainer implements OnInit, OnDestroy {
     }
   ];
   activetedLink: number;
-  constructor(private route: ActivatedRoute, public router: Router, private data: SideFormActionService, private auth: AuthService) {
+  constructor(private route: ActivatedRoute, 
+    public router: Router, 
+    private data: SideFormActionService, 
+    private auth: AuthService, 
+    private changeTab: ControlService,
+    public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -45,7 +53,13 @@ export class BugsRepContainer implements OnInit, OnDestroy {
   }
   receiveIndex($event)
   {
-    this.activetedLink=$event;
+    if(this.changeTab.changeTabGuard())
+    {
+      this.activetedLink=$event;
+    }
+    else{
+      this.dialog.open(DialogLogoutComponent);
+    }
   }
   closeOrOpenForm($event): void{
     this.data.changeStatus($event);

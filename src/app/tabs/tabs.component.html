@@ -3,8 +3,7 @@
         class="tabLabel"
         *ngFor="let link of links"
         [routerLink]="rootUrl + link.link"
-        [active]="this.router.url == rootUrl + link.link"
-        (click)="changeTab(link.index)">
+        [active]="this.router.url == rootUrl + link.link">
         {{link.name}}
     </a>
   </nav>

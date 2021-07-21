@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ControlService } from '../service/control.service';
+import { DialogLogoutComponent } from '../dialog-logout/dialog-logout.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tabs',
@@ -12,12 +15,23 @@ export class TabsComponent implements OnInit {
   rootUrl='';
   @Output() tabEvent = new EventEmitter<number>();
 
-  constructor(private route: ActivatedRoute, public router: Router) { }
+  constructor(private route: ActivatedRoute, 
+    public router: Router,
+    private control: ControlService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void{
   }
-  changeTab(index: number){
-    this.tabEvent.emit(index);
+  changeTab(target: string): string{
+    if(this.control.changeTabGuard())
+    {
+      return target;
+    }
+    else{
+      //this.dialog.open(DialogLogoutComponent);
+      return this.router.url;
+    }
   }
 
 }
