@@ -1,11 +1,18 @@
 .header{
     background-color: rgba(5, 27, 44, 0.9);
     color: rgb(253, 250, 249);
-    width: 100vw;
+    width: 100%;
 }
 h1{
     font-size: x-large;
 }
 .fillFreSpace{
-    width: 29.5vw;
+    width: 32vw;
+}
+.centerIconText{
+    display: flex;
+    align-items: center;
+}
+.littleSpace{
+    width: 6px;
 }

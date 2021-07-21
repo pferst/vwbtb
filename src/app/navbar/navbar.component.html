@@ -3,4 +3,6 @@
     <h1>Be the best</h1>
     <span class="fillFreSpace"></span>
     <app-tabs [links]="links" (tabEvent)="transferToContainer($event)"></app-tabs>
+    <span class="fillFreSpace"></span>
+    <h2 class="centerIconText" (click)="logout()"><mat-icon>logout</mat-icon><span class="littleSpace"></span>Wyloguj się</h2>
 </mat-toolbar>

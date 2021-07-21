@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   action: boolean = false;
   @Output() tabChanging = new EventEmitter<number>();
   @Output() formStatusChanging = new EventEmitter<boolean>();
+  @Output() logOut = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
@@ -35,5 +36,8 @@ export class NavbarComponent implements OnInit {
       this.formStatusChanging.emit(true);
       this.action=false;
     }
+  }
+  logout(){
+    this.logOut.emit();
   }
 }
