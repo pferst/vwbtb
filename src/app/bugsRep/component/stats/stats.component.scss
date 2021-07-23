@@ -1,20 +1,32 @@
-.cardForm{
-    margin-left: 0;
-    margin-right: 20px;
-}
 .subtitle{
     font-size: medium;
 }
+.sideNav {
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    @media(max-width: 756px){
+        width: 100%;
+    }
+}
+.sidenav__left {
+    @media (max-width: 756px) {
+        width: 100% !important;
+    }
+}
 mat-card-title{
     font-style: italic;
+    font-size: large;
+    width: 95%;
 }
 .charts{
     width: 90%;
     margin-left: 5%;
 }
 .todayBtn{
-    position: absolute;
-    right: 0;
     margin-bottom: 2vh;
     background-color: rgba(5, 27, 44, 0.9);
     color: white;

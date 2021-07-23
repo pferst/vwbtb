@@ -2,8 +2,8 @@
     <button mat-icon-button (click)="changeFormStatus()"><mat-icon>menu</mat-icon></button>
     <img *ngIf="!isMobile" src='assets/logo/vw_logo_white.png' class="logo">
     <h1 *ngIf="!isMobile">QRK Reports Management</h1>
-    <span class="fillFreSpace"></span>
+    <span class="fillFreSpace" *ngIf="!isMobile"></span>
     <app-tabs [links]="links" (tabEvent)="transferToContainer($event)"></app-tabs>
-    <span class="fillFreSpace"></span>
+    <span class="fillFreSpace" *ngIf="!isMobile"></span>
     <button class="btn" mat-icon-button (click)="logout()"><mat-icon>logout</mat-icon>Wyloguj się</button>
 </mat-toolbar>

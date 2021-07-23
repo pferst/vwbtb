@@ -31,7 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogLogoutComponent } from './dialog-logout/dialog-logout.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MatGridListModule} from '@angular/material/grid-list';
-
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
@@ -71,6 +71,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatDialogModule,
     NgxChartsModule,
     MatGridListModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

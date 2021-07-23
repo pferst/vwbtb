@@ -24,13 +24,13 @@ export class NavbarComponent implements OnInit {
   @HostListener('window:resize')
   async onResize() {
     //await new Promise(f => setTimeout(f, 500));
-    if(window.visualViewport.width < 855) this.isMobile = true;
+    if(window.visualViewport.width < 756) this.isMobile = true;
     else this.isMobile = false;
   }
   constructor() { }
 
   ngOnInit(): void {
-    if(window.visualViewport.width < 855) this.isMobile = true;
+    if(window.visualViewport.width < 756) this.isMobile = true;
     else this.isMobile = false;
   }
   transferToContainer($event): void

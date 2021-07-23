@@ -73,15 +73,16 @@ export class StatsComponent implements OnInit, OnDestroy {
   @HostListener('MSFullscreenChange')
   @HostListener('window:resize')
   async onResize() {
+    if(window.visualViewport.width < 756) this.isMobile = true;
+    else this.isMobile = false;
     await new Promise(f => setTimeout(f, 500));
     if(this.dataTemp1) this.show(1);
     if(this.dataTemp2) this.show(2);
     if(this.dataTemp3) this.show(3);
-    if(window.visualViewport.width <= 756) this.isMobile = true;
-    else this.isMobile = false;
   }
 
   ngOnInit(): void {
+    this.isMobile = window.visualViewport.width < 756;
     this.date=new Date();
     this.date.setHours(0);
     this.date.setMinutes(0);

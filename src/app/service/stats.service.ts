@@ -109,15 +109,17 @@ export class StatsService {
             return item.procStage == this.stages[k].value;
           });
           let filteredErrors= [];
+          let count = 0;
           for(let j = 0; j < form.errType.length; j++ )
           {
             filteredErrors = filteredStages.filter(item =>{
               return item.errType == form.errType[j];
             });
+            count+=filteredErrors.length;
           }
           const ser = {
             name: this.stages[k].name,
-            value: filteredErrors.length
+            value: count
           };
           el.series.push(ser);
         }
