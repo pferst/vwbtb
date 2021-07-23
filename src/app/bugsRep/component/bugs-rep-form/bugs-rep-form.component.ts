@@ -23,7 +23,7 @@ export class BugsRepFormComponent implements OnInit {
   saved: boolean;
 
   constructor(private fb: FormBuilder, private dateAdapter: DateAdapter<Date>) {
-    this.dateAdapter.setLocale('pl');
+    this.dateAdapter.setLocale('en-GB');
     this.date=new Date();
    }
 /*
@@ -37,10 +37,16 @@ export class BugsRepFormComponent implements OnInit {
    errInclusion: string,
    errCoordinates: Array<number> */
   ngOnInit(): void {
+    this.date=new Date();
+    this.date.setHours(0);
+    this.date.setMinutes(0);
+    this.date.setSeconds(0);
+    this.date.setMilliseconds(0);
+    console.log("ngOnInit: ", this.date);
     this.form = this.fb.group({
       id: [null, Validators.required],
       carColor: [null, Validators.required],
-      date: [new Date(), Validators.required],
+      date: [this.date, Validators.required],
       procStage: [null, Validators.required],
       carType: [null, Validators.required],
       carSide: [null, Validators.required],
@@ -59,6 +65,12 @@ export class BugsRepFormComponent implements OnInit {
   }
   today(): void{
     this.date=new Date();
+    this.date.setHours(0);
+    this.date.setMinutes(0);
+    this.date.setSeconds(0);
+    this.date.setMilliseconds(0);
+    console.log("today: ", this.date);
+    console.log('datepicker: ', this.form.value.date);
     this.form.patchValue({
       date: this.date
    });
@@ -70,6 +82,10 @@ export class BugsRepFormComponent implements OnInit {
         injType: '-'
      });
     }
+    this.form.value.date.setHours(0);
+    this.form.value.date.setMinutes(0);
+    this.form.value.date.setSeconds(0);
+    this.form.value.date.setMilliseconds(0);
     this.viewButter.emit(this.form.value);
   }
   save(){
@@ -77,6 +93,10 @@ export class BugsRepFormComponent implements OnInit {
     {
       this.form.value.injType = '-';
     }
+    this.form.value.date.setHours(0);
+    this.form.value.date.setMinutes(0);
+    this.form.value.date.setSeconds(0);
+    this.form.value.date.setMilliseconds(0);
     this.saveReport.emit(this.form.value);
     this.clear();
   }

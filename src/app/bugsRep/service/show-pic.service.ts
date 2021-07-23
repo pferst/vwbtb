@@ -8,6 +8,7 @@ import { injections  } from '../4form/errInjection';
 import { Report } from 'src/app/_data/report.interface';
 import { from } from 'rxjs';
 import { groupBy, mergeMap, toArray, last } from 'rxjs/operators';
+import * as moment from 'moment';
 
 
 @Injectable({
@@ -41,7 +42,7 @@ export class ShowPicService {
 
     if(this.prevForm!=null)
     {
-      if(this.prevForm.id!=viewForm.id || this.prevForm.carColor!=viewForm.carColor || this.prevForm.date!=viewForm.date || this.prevForm.procStage!=viewForm.procStage || this.prevForm.carType!=viewForm.carType || this.prevForm.carSide!=viewForm.carSide)
+      if(this.prevForm.id!=viewForm.id || this.prevForm.carColor!=viewForm.carColor || this.prevForm.date.getTime()!=viewForm.date.getTime() || this.prevForm.procStage!=viewForm.procStage || this.prevForm.carType!=viewForm.carType || this.prevForm.carSide!=viewForm.carSide)
       {
         this.saveReport(this.prevForm);
         this.insertError([null, null]);
@@ -103,9 +104,12 @@ export class ShowPicService {
     if(read!=null && read.length>0){
       lastRep = JSON.parse(read);
       localStorage.removeItem('last');
-      console.log("dupa");
     }
     else{
+      return;
+    }
+    if(lastRep.length==0)
+    {
       return;
     }
     let reports: Report[] = [];
@@ -126,7 +130,7 @@ export class ShowPicService {
     };
     newReport.id = formVals.id;
     newReport.carColor=formVals.carColor;
-    newReport.date=formVals.date;
+    newReport.date=moment(formVals.date).add(1, 'd').toDate();
     newReport.procStage=formVals.procStage;
     newReport.carType=formVals.carType;
     newReport.carSide=formVals.carSide;

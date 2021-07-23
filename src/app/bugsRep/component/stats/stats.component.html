@@ -1,142 +1,115 @@
 <mat-sidenav-container class="sideNav">
     <mat-sidenav #sidenav opened mode="side" disableClose>
         <h2><mat-icon>assignment</mat-icon> Formularz</h2>
-        <form [formGroup]="form" class = "sideForm">
-            <!-- Space-->
-            <mat-card>
-              <mat-card-title><mat-icon>timeline</mat-icon> Obszar</mat-card-title>
-              <mat-card-content>
-                <mat-form-field appearance="fill">
-                  <mat-label>Wybierz etap procesu</mat-label>
-                  <mat-select formControlName="procStage">
-                    <mat-option></mat-option>
-                    <mat-option value="bc">BC/CC</mat-option>
-                    <mat-option value="fuler">Fuler</mat-option>
-                    <mat-option value="pvc">PVC</mat-option>
-                    <mat-option value="vbh">VBH/KTL</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </mat-card-content>
-            </mat-card><br/>
-            <!-- Date-->
-            <mat-card>
-              <mat-card-title><mat-icon>calendar_today</mat-icon> Data</mat-card-title>
-              <mat-card-content>
-                <mat-form-field appearance="fill">
-                  <mat-label>Wybierz datę</mat-label>
-                  <input matInput [matDatepicker]="picker" formControlName="date" placeholder="dd.mm.yyyy">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker touchUi #picker></mat-datepicker>
-                </mat-form-field><br/>
-                <button mat-raised-button class="submitButton">Dziś</button>
-              </mat-card-content>
-            </mat-card><br/>
-            <!-- Info about car-->
-            <mat-card>
-              <mat-card-title><mat-icon> directions_car</mat-icon> Auto</mat-card-title>
-              <mat-card-content>
-                <!-- Model -->
-                <div> Podaj PIN pojazdu</div>
-                  <mat-form-field appearance="fill">
-                    <mat-label>PIN pojazdu</mat-label>
-                    <input matInput maxlength="7" type="text" placeholder="ID pojazdu" formControlName="id">
-                </mat-form-field>
-                <!-- Color -->
-                <div> Wybierz kolor pojazdu</div>
-                <mat-form-field appearance="fill">
-                  <mat-label>Wybierz kolor pojazdu</mat-label>
-                  <mat-select formControlName="carColor">
-                    <mat-option value="008">008</mat-option>
-                    <mat-option value="100">100</mat-option>
-                    <mat-option value="B4B4">B4B4</mat-option>
-                    <mat-option value="8E8E">8E8E</mat-option>
-                    <mat-option value="4B4B">4B4B</mat-option>
-                    <mat-option value="X3X3">X3X3</mat-option>
-                    <mat-option value="V7V7">V7V7</mat-option>
-                    <mat-option value="E3E3">E3E3</mat-option>
-                    <mat-option value="2T2T">2T2T</mat-option>
-                    <mat-option value="0P0P">0P0P</mat-option>
-                    <mat-option value="KTL">KTL</mat-option>
-                    <mat-option value="PVC">PVC</mat-option>
-                  </mat-select>
-                </mat-form-field><br/>
-                <!-- Type-->
-                <div>Wybierz rodzaj pojazdu</div>
-                <mat-form-field appearance="fill">
-                  <mat-label>Wybierz rodzaj pojazdu</mat-label>
-                  <mat-select formControlName="carType">
-                    <mat-option></mat-option>
-                    <mat-option value="Doka">Doka</mat-option>
-                    <mat-option value="Kasten">Kasten</mat-option>
-                    <mat-option value="Kombi">Kombi</mat-option>
-                  </mat-select>
-                </mat-form-field><br/>
-                <!-- Part -->
-                <div>Wybierz część pojazdu</div>
-                <mat-form-field appearance="fill">
-                  <mat-label>Wybierz część pojazdu</mat-label>
-                  <mat-select formControlName="carPart">
-                    <mat-option></mat-option>
-                    <mat-option value="błotnik">błotnik</mat-option>
-                    <mat-option value="drzwi przednie">drzwi przednie</mat-option>
-                    <mat-option value="drzwi tylne">drzwi tylne</mat-option>
-                    <mat-option value="maska">maska</mat-option>
-                    <mat-option value="próg drzwi przednich">próg drzwi przednich</mat-option>
-                    <mat-option value="próg drzwi tylnych">próg drzwi tylnych</mat-option>
-                    <mat-option value="ściana boczna">ściana boczna</mat-option>
-                    <mat-option value="ściana tylna">ściana tylna</mat-option>
-                    <mat-option value="słupek A">słupek A</mat-option>
-                    <mat-option value="słupek B">słupek B</mat-option>
-                    <mat-option value="słupek C">słupek C</mat-option>
-                    <mat-option value="słupek D">słupek D</mat-option>
-                    <mat-option value="klapka wlewu">klapka wlewu</mat-option>
-                    <mat-option value="kanał wodny">kanał wodny</mat-option>
-                    <mat-option value="czapka">czapka</mat-option>
-                    <mat-option value="drzwi przesuwne">drzwi przesuwne</mat-option>
-                    <mat-option value="drzwi skrzydełkowe">drzwi skrzydełkowe</mat-option>
-                    <mat-option value="podłoga">podłoga</mat-option>
-                    <mat-option value="podłnadkoleoga">nadkole</mat-option>
-                  </mat-select>
-                </mat-form-field><br/>
-                <!-- Side -->
-                <div>Wybierz stronę pojazdu</div>
-                <mat-radio-group class = "tp-radio-group" formControlName="carSide">
-                  <mat-radio-button class = "tp-radio-button" value="wew">Wewnętrzna</mat-radio-button>
-                  <mat-radio-button class = "tp-radio-button" value="zew">Zewnętrzna</mat-radio-button>
-                </mat-radio-group>
-              </mat-card-content>
-            </mat-card><br/>
-            <!-- Errors -->
-            <mat-card>
-              <mat-card-title><mat-icon>error</mat-icon> Błąd</mat-card-title>
-              <mat-card-content>
-                <div>Wybierz rodzaj błędu</div>
-                <mat-form-field appearance="fill">
-                  <mat-label>błąd</mat-label>
-                  <mat-select placeholder="błąd" formControlName="errType">
-                      <mat-option></mat-option>
-                    <!--<mat-option *ngFor="let err of errorsData" [value]="err.name">{{err.name}}</mat-option>-->
-                  </mat-select>
-                </mat-form-field><br/>
-                <div>Wybierz wtrącenie</div>
-                <mat-form-field appearance="fill">
-                  <mat-label>wtrącenie</mat-label>
-                  <mat-select formControlName="injType">
-                    <mat-option></mat-option>
-                    <!--<mat-option *ngFor="let inj of injectionsData" [value]="inj.name">{{inj.name}}</mat-option>-->
-                  </mat-select>
-                </mat-form-field><br/>
-              </mat-card-content>
-            </mat-card><br/>
-          <button mat-raised-button class="submitButton" [disabled]="!form.valid"><mat-icon>brush</mat-icon> Wyświetl</button>
+        <!-- Templete 1 -->
+        <mat-card>
+          <mat-card-title>Rozkład błędów w czasie</mat-card-title>
+        <mat-card-content>
+
+        <form [formGroup]="dateToErr" class = "sideForm">
+          <!-- Date-->
+            <div><mat-icon>calendar_today</mat-icon> Przedział dat</div>
+              <mat-form-field appearance="fill">
+                <mat-label>Wybierz datę początkową i końcową</mat-label>
+                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                  <input matStartDate formControlName="start" placeholder="data początkowa">
+                  <input matEndDate formControlName="end" placeholder="data końcowa">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker touchUi #picker></mat-date-range-picker>
+              
+                <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Nieprawidłowa data początkowa</mat-error>
+                <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Nieprawidłowa data końcowa</mat-error>
+              </mat-form-field><br/>
+              <button mat-raised-button class="submitButton" (click)="today()">Dziś</button>
+          <!-- Errors -->
+            <div><mat-icon>error</mat-icon> Błąd</div>
+              <div>Wybierz rodzaj błędu</div>
+              <mat-form-field appearance="fill">
+                <mat-label>błąd</mat-label>
+                <mat-select placeholder="błąd" formControlName="errType">
+                  <mat-option *ngFor="let err of errorsData" [value]="err.name">{{err.name}}</mat-option>
+                </mat-select>
+              </mat-form-field><br/>
+              <div>Wybierz wtrącenie</div>
+              <mat-form-field appearance="fill">
+                <mat-label>wtrącenie</mat-label>
+                <mat-select formControlName="injType">
+                  <mat-option *ngFor="let inj of injectionsData" [value]="inj.name">{{inj.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        <button mat-raised-button class="submitButton" (click)="show(1)"><mat-icon>brush</mat-icon> Wyświetl</button>
+        <span class="fillFreeSpaceVertical"></span>
+        <button mat-raised-button><mat-icon>clear</mat-icon> Wyczyść</button>
+        </form>
+        </mat-card-content>
+        </mat-card>
+        <br/>
+        <!-- Templete 2-->
+        <mat-card>
+          <mat-card-title>Błędy w zależności od części</mat-card-title>
+        <mat-card-content>
+        <form [formGroup]="partToErr" class = "sideForm">
+          <!-- Date-->
+            <div><mat-icon></mat-icon> Część pojazdu</div>
+              <!-- Part -->
+              <div>Wybierz część pojazdu</div>
+              <mat-form-field appearance="fill">
+                <mat-label>Wybierz część pojazdu</mat-label>
+                <mat-select formControlName="carPart">
+                  <mat-option></mat-option>
+                  <mat-option value="błotnik">błotnik</mat-option>
+                  <mat-option value="drzwi przednie">drzwi przednie</mat-option>
+                  <mat-option value="drzwi tylne">drzwi tylne</mat-option>
+                  <mat-option value="maska">maska</mat-option>
+                  <mat-option value="próg drzwi przednich">próg drzwi przednich</mat-option>
+                  <mat-option value="próg drzwi tylnych">próg drzwi tylnych</mat-option>
+                  <mat-option value="ściana boczna">ściana boczna</mat-option>
+                  <mat-option value="ściana tylna">ściana tylna</mat-option>
+                  <mat-option value="słupek A">słupek A</mat-option>
+                  <mat-option value="słupek B">słupek B</mat-option>
+                  <mat-option value="słupek C">słupek C</mat-option>
+                  <mat-option value="słupek D">słupek D</mat-option>
+                  <mat-option value="klapka wlewu">klapka wlewu</mat-option>
+                  <mat-option value="kanał wodny">kanał wodny</mat-option>
+                  <mat-option value="czapka">czapka</mat-option>
+                  <mat-option value="drzwi przesuwne">drzwi przesuwne</mat-option>
+                  <mat-option value="drzwi skrzydełkowe">drzwi skrzydełkowe</mat-option>
+                  <mat-option value="podłoga">podłoga</mat-option>
+                  <mat-option value="podłnadkoleoga">nadkole</mat-option>
+                </mat-select>
+              </mat-form-field><br/>
+          <!-- Errors -->
+           <div><mat-icon>error</mat-icon> Błąd</div>
+              <div>Wybierz rodzaj błędu</div>
+              <mat-form-field appearance="fill">
+                <mat-label>błąd</mat-label>
+                <mat-select placeholder="błąd" formControlName="errType" multiple>
+                  <mat-option *ngFor="let err of errorsData" [value]="err.name">{{err.name}}</mat-option>
+                </mat-select>
+              </mat-form-field><br/>
+              <div>Wybierz wtrącenie</div>
+              <mat-form-field appearance="fill">
+                <mat-label>wtrącenie</mat-label>
+                <mat-select formControlName="injType">
+                  <mat-option *ngFor="let inj of injectionsData" [value]="inj.name">{{inj.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+          <button mat-raised-button class="submitButton" ><mat-icon>brush</mat-icon> Wyświetl</button>
           <span class="fillFreeSpaceVertical"></span>
           <button mat-raised-button><mat-icon>clear</mat-icon> Wyczyść</button>
-          </form>
+        </form>
+        </mat-card-content>
+        </mat-card>
+        <br/>
 </mat-sidenav>
+<!--End of side forms-->
 <mat-sidenav-content>
     <button mat-button (click)="closeForm()">
         <mat-icon *ngIf='formOpened'>keyboard_arrow_left</mat-icon>
         <mat-icon *ngIf='!formOpened'>keyboard_arrow_right</mat-icon>
     </button>
+    <ngx-charts-line-chart *ngIf="dataTemp1" [results]="dataTemp1"></ngx-charts-line-chart>
+    <div #partAndErr></div>
 </mat-sidenav-content>
 </mat-sidenav-container>

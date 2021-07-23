@@ -2,7 +2,7 @@
     <a mat-tab-link 
         class="tabLabel"
         *ngFor="let link of links"
-        [routerLink]="rootUrl + link.link"
+        [routerLink]="changeTab(rootUrl + link.link)"
         [active]="this.router.url == rootUrl + link.link">
         {{link.name}}
     </a>
