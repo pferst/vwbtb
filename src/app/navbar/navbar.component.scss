@@ -1,13 +1,18 @@
 .header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     background-color: rgba(5, 27, 44, 0.9);
     color: rgb(253, 250, 249);
-    width: 100%;
 }
 h1{
     font-size: x-large;
 }
 .fillFreSpace{
     width: 32vw;
+    @media (max-width: 756) {
+        display: none;
+    }
 }
 .centerIconText{
     display: flex;
@@ -15,4 +20,12 @@ h1{
 }
 .littleSpace{
     margin-left: 6px;
+}
+
+.btn {
+    width: 120px;
+}
+.logo{
+    height: 90%;
+    margin-right: 10px;
 }

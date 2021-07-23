@@ -5,8 +5,24 @@
     left: 0;
     right: 0;
     width: 100vw;
+    @media(max-width: 756px){
+        width: 100%;
+    }
 }
 h2{
     margin-left:2.1vw;
     margin-top: 2vh;
+}
+.btn {
+    z-index: 1;
+
+    @media (max-width: 756px) {
+        display: none;
+    }
+}
+
+.sidenav__left {
+    @media (max-width: 756px) {
+        width: 100% !important;
+    }
 }

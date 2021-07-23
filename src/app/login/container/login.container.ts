@@ -11,7 +11,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'login-container',
   templateUrl: './login.container.html',
-  styleUrls: ['./login.container.scss', '../../navbar/navbar.component.scss'],
+  styleUrls: ['./login.container.scss'],
   viewProviders: [LoginComponent]
 })
 export class LoginContainer implements OnInit, OnDestroy {
@@ -19,6 +19,8 @@ export class LoginContainer implements OnInit, OnDestroy {
   form: FormGroup;
   user: User;
   subscription: Subscription;
+  error: boolean = false;
+
   constructor(private auth: AuthService, private router: Router) {
    }
 
@@ -32,11 +34,13 @@ export class LoginContainer implements OnInit, OnDestroy {
     const user: User = {login: $event.login, password: $event.password};
     if(this.auth.logIn(user.login, user.password))
     {
+      this.error = false;
       this.router.navigateByUrl('/');
     }
     else{
-      this.router.navigateByUrl('/login');
-      localStorage.clear();
+      this.error = true;
+      //this.router.navigateByUrl('/login');
+      //localStorage.removeItem;
       console.log("podaj poprawne dane");
     }
   }

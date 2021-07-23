@@ -1,5 +1,5 @@
-mat-card{
-    margin-left: 20px;
+.cardForm{
+    margin-left: 0;
     margin-right: 20px;
 }
 .subtitle{
@@ -7,4 +7,15 @@ mat-card{
 }
 mat-card-title{
     font-style: italic;
+}
+.charts{
+    width: 90%;
+    margin-left: 5%;
+}
+.todayBtn{
+    position: absolute;
+    right: 0;
+    margin-bottom: 2vh;
+    background-color: rgba(5, 27, 44, 0.9);
+    color: white;
 }

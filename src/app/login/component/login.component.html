@@ -1,4 +1,5 @@
 <form class="example-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <img src='assets/logo/vw_logo.png' class="logo">
     <h2 style="margin-top: 2vh;">Zaloguj się by kontynuować</h2>
     <mat-form-field appearance="fill" class="scalableInput">
       <mat-label>Login</mat-label>
@@ -11,4 +12,5 @@
     </mat-form-field>
     <br/>
     <button mat-raised-button type="submit" [disabled]="!form.valid" class="submitButton"><mat-icon>login</mat-icon><span class="littleSpace"></span>Zaloguj</button>
+    <mat-error *ngIf="error">Nieprawidłowe dane logowania</mat-error>
 </form>

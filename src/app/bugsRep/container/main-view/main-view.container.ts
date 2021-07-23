@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { SideFormActionService } from '../../service/side-form-action.service';
 import { ShowPicService } from '../../service/show-pic.service';
@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
 import { Pictures } from '../../component/pic-view/pictures.interface';
 import { pictures } from '../../component/pic-view/pictures';
 import { ErrCoordinates } from 'src/app/_data/coordinates.interface';
-import {MatSnackBar, MatSnackBarHorizontalPosition} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition} from '@angular/material/snack-bar';
 import { SnackBarComponent } from 'src/app/snack-bar/snack-bar.component';
 
 @Component({
@@ -38,8 +38,20 @@ export class MainViewContainer implements OnInit, OnDestroy {
   //Data form snack bar
   snackRefSub: Subscription;
   //
+
+  isMobile: boolean = false;
   @Output() sideForm = new EventEmitter<HTMLElement>();
   transportViewForm: FormGroup;
+  @HostListener('document:fullscreenchange')
+  @HostListener('webkitfullscreenchange')
+  @HostListener('mozfullscreenchange')
+  @HostListener('MSFullscreenChange')
+  @HostListener('window:resize')
+  async onResize() {
+    //await new Promise(f => setTimeout(f, 500));
+    if(window.visualViewport.width < 756) this.isMobile = true;
+    else this.isMobile = false;
+  }
   constructor(private data: SideFormActionService, private picForm: ShowPicService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -58,6 +70,10 @@ export class MainViewContainer implements OnInit, OnDestroy {
         this.openSuccessSnackBar()
       }
     });
+
+    this.isMobile = window.visualViewport.width < 756;
+    console.log(window.screen.width);
+    console.log(this.isMobile);
   }
   ngOnDestroy(): void{
     this.subscription.unsubscribe();

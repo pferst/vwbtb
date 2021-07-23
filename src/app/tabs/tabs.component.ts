@@ -27,14 +27,10 @@ export class TabsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void{
   }
   changeTab(target: string): string{
-    if(this.control.changeTabGuard())
+    if(target != '/')
     {
-      return target;
+      localStorage.removeItem('last');
     }
-    else{
-      //this.changeSource.next(true);
-      //this.dialog.open(DialogLogoutComponent);
-      return this.router.url;
-    }
+    return target;
   }
 }

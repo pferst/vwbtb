@@ -30,6 +30,8 @@ import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogLogoutComponent } from './dialog-logout/dialog-logout.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 
 
@@ -67,7 +69,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatNativeDateModule,
     MatSnackBarModule,
     MatDialogModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

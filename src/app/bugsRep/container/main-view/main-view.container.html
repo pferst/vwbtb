@@ -1,10 +1,10 @@
 <mat-sidenav-container class="sideNav">
-    <mat-sidenav #sidenav opened mode="side" disableClose>
+    <mat-sidenav class="sidenav__left" #sidenav opened [mode]="isMobile ? 'over' : 'side'" disableClose>
         <h2><mat-icon>assignment</mat-icon> Formularz zgłoszeniowy</h2>
         <app-bugs-rep-form (viewButter)="showPic($event)" (saveReport)="saveReport($event)"></app-bugs-rep-form>
     </mat-sidenav>
     <mat-sidenav-content>
-        <button mat-button (click)="closeForm()">
+        <button class="btn" mat-button (click)="closeForm()">
             <mat-icon *ngIf='formOpened'>keyboard_arrow_left</mat-icon>
             <mat-icon *ngIf='!formOpened'>keyboard_arrow_right</mat-icon>
         </button>

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -26,7 +26,6 @@ export class StatsComponent implements OnInit, OnDestroy {
   errorsData: ErrTypes[];
   injectionsData: Injection[];
   range: FormGroup;
-  partToErr: FormGroup;
   date: Date;
   endDate: Date;
   //
@@ -39,10 +38,17 @@ export class StatsComponent implements OnInit, OnDestroy {
   yAxisLabel1: string;
   //
   //Template 2
+  partToErr: FormGroup;
   range1: FormGroup;
   subTemp2: Subscription;
   dataTemp2: any = null;
   yAxisLabel2: string = 'liczba błędów';
+  //
+  //template 3
+  circle: FormGroup;
+  range2: FormGroup;
+  subTemp3: Subscription;
+  dataTemp3: any = null;
   //
   //data for forms - side
   action: boolean;
@@ -50,6 +56,7 @@ export class StatsComponent implements OnInit, OnDestroy {
   formOpened: boolean = true;
 
   //
+  isMobile: boolean = false;
   //actions wchih have fluence on form
   @ViewChild('sidenav') sidenav: MatSidenav;
   //
@@ -59,6 +66,19 @@ export class StatsComponent implements OnInit, OnDestroy {
     private service: StatsService,
     private data: SideFormActionService) {
     this.dateAdapter.setLocale('pl');
+  }
+  @HostListener('document:fullscreenchange')
+  @HostListener('webkitfullscreenchange')
+  @HostListener('mozfullscreenchange')
+  @HostListener('MSFullscreenChange')
+  @HostListener('window:resize')
+  async onResize() {
+    await new Promise(f => setTimeout(f, 500));
+    if(this.dataTemp1) this.show(1);
+    if(this.dataTemp2) this.show(2);
+    if(this.dataTemp3) this.show(3);
+    if(window.visualViewport.width <= 756) this.isMobile = true;
+    else this.isMobile = false;
   }
 
   ngOnInit(): void {
@@ -81,6 +101,10 @@ export class StatsComponent implements OnInit, OnDestroy {
       start: this.date,
       end: this.endDate
     });
+    this.range2 = this.fb.group({
+      start: this.date,
+      end: this.endDate
+    });
     this.dateToErr = this.fb.group({
       range: this.range,
       errType: [null, Validators.required],
@@ -91,10 +115,14 @@ export class StatsComponent implements OnInit, OnDestroy {
       carPart: [null, Validators.required],
       errType: [null, Validators.required]
     });
+    this.circle = this.fb.group({
+      range1: this.range2
+    });
     this.errorsData = errors;
     this.injectionsData = injections;
     this.subTemp1 = this.service.dataTemp1$.subscribe(dataTemp1 => this.dataTemp1 = dataTemp1);
     this.subTemp2 = this.service.dataTemp2$.subscribe(dataTemp2 => this.dataTemp2 = dataTemp2);
+    this.subTemp3 = this.service.dataTemp3$.subscribe(dataTemp3 => this.dataTemp3 = dataTemp3);
     this.subscription = this.data.currentAction.subscribe(action => {
       this.action = action;
       if(this.sidenav)
@@ -107,7 +135,9 @@ export class StatsComponent implements OnInit, OnDestroy {
     this.subTemp1.unsubscribe();
     this.dataTemp1 = null;    
     this.subTemp2.unsubscribe();
-    this.dataTemp2 = null;
+    this.dataTemp2 = null;    
+    this.subTemp3.unsubscribe();
+    this.dataTemp3 = null;
   }
   closeForm()
   {
@@ -120,6 +150,7 @@ export class StatsComponent implements OnInit, OnDestroy {
     {
       this.formOpened=true;
     }
+    this.onResize();
   }
   today(chosen: any)
   {
@@ -147,6 +178,10 @@ export class StatsComponent implements OnInit, OnDestroy {
       }
       case 2:{
         this.dataTemp2=null;
+        break;
+      }
+      case 3:{
+        this.dataTemp3=null;
         break;
       }
     }
@@ -196,6 +231,22 @@ export class StatsComponent implements OnInit, OnDestroy {
           console.log(this.dataTemp2);
         }
         break;
+      }
+      case 3:{
+        if(this.circle.value.range1.start && this.circle.value.range1.end)
+        {
+          this.circle.value.range1.start.setMilliseconds(0);
+          this.circle.value.range1.start.setSeconds(0);
+          this.circle.value.range1.start.setMinutes(0);
+          this.circle.value.range1.start.setHours(0);
+          this.circle.value.range1.end.setMilliseconds(999);
+          this.circle.value.range1.end.setSeconds(59);
+          this.circle.value.range1.end.setMinutes(59);
+          this.circle.value.range1.end.setHours(23);
+          
+          this.service.circle(this.partToErr.value);
+          console.log(this.dataTemp3);
+        }
       }
     }
   }

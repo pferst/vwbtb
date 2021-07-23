@@ -17,8 +17,10 @@ img{
 .actionButtons{
     position: relative;
     right: 0;
-    left: 55vw;
     top: -20px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 .actionButtons button{
     margin-left: .5%;

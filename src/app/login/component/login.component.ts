@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter, Output } from '@angular/core';
+import { Component, OnInit,EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { User } from '../interface/user';
 
@@ -10,6 +10,7 @@ import { User } from '../interface/user';
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
+  @Input() error: boolean;
   @Output() loginRequest = new EventEmitter<User>();
   //to taki protip na szybko, bo działa <{user: string, password: string}>();
   constructor(private fb: FormBuilder){}

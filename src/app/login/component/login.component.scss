@@ -1,9 +1,14 @@
 form{
     position: absolute;
     text-align:center;
-    top: 29vh;
+    top: 22vh;
     width: 22vw;
+    min-width: 320px;
     left: 37.5vw;
+    @media (max-width: 756px)
+    {
+        left: 15vw;
+    }
     right: 34vw;
     padding-top: 2vh;
     padding-bottom: 2vh;
@@ -23,9 +28,13 @@ form{
     padding-top: 1vh;
     padding-bottom: 1vh;
     background-color: rgba(5, 27, 44, 0.9);
-    margin-bottom: 5vh;
+    margin-bottom: 2vh;
     color: white;
 }
 .littleSpace{
     margin-left: 6px;
+}
+.logo{
+    height: 25vh;
+    object-fit: contain;
 }

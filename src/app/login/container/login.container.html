@@ -1,7 +1,8 @@
 <mat-toolbar class="header">
-    <h1>Be the best</h1>
+    <img src='assets/logo/vw_logo_white.png' class="logo">
+    <h1>QRK Reports Management</h1>
 </mat-toolbar>
 <section class="center">
-    <app-login (loginRequest)="receiveForm($event)"></app-login>
+    <app-login [error]="error" (loginRequest)="receiveForm($event)"></app-login>
 </section>
 <footer>Created by Piotr Ferst for Volkswagen Poznań</footer>

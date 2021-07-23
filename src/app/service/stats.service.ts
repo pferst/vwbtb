@@ -3,6 +3,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { VertBarChartData } from '../bugsRep/component/stats/vert-bar-chart-data';
 import { GroupedChartData } from '../bugsRep/component/stats/linear-chart-data';
+import { errors } from '../bugsRep/4form/errTypes';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ export class StatsService {
   //template 2
   private subTemp2 = new BehaviorSubject<any>(null);
   dataTemp2$ = this.subTemp2.asObservable();
+  //
+  //template 3
+  private subTemp3 = new BehaviorSubject<any>(null);
+  dataTemp3$ = this.subTemp3.asObservable();
   //
   //for everything
   stages = [
@@ -121,6 +126,26 @@ export class StatsService {
     }
     console.log(dataSend);
     this.subTemp2.next(dataSend);
+  }
+  circle(form : any){
+    let data = this.getDataInTime(form.range1.start, form.range1.end);
+    let dataSend: VertBarChartData[] = [];
+    if(data && data.length>0)
+    {
+      for(let  i = 0; i < errors.length; i++)
+      {
+        const filtered = data.filter(err => {
+          return err.errType == errors[i].name;
+        });
+        const saved: VertBarChartData = {
+          name: errors[i].name,
+          value: filtered.length
+        };
+        dataSend.push(saved);
+      }
+    }
+    console.log(dataSend);
+    this.subTemp3.next(dataSend);
   }
   getReports(): any{
     const read = localStorage.getItem('Reports');

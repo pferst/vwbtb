@@ -1,8 +1,9 @@
 <mat-toolbar class="header">
     <button mat-icon-button (click)="changeFormStatus()"><mat-icon>menu</mat-icon></button>
-    <h1>Be the best</h1>
+    <img *ngIf="!isMobile" src='assets/logo/vw_logo_white.png' class="logo">
+    <h1 *ngIf="!isMobile">QRK Reports Management</h1>
     <span class="fillFreSpace"></span>
     <app-tabs [links]="links" (tabEvent)="transferToContainer($event)"></app-tabs>
     <span class="fillFreSpace"></span>
-    <button mat-icon-button (click)="logout()"><h2 class="centerIconText"><mat-icon>logout</mat-icon><span class="littleSpace"></span> Wyloguj się</h2></button>
+    <button class="btn" mat-icon-button (click)="logout()"><mat-icon>logout</mat-icon>Wyloguj się</button>
 </mat-toolbar>

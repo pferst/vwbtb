@@ -1,6 +1,6 @@
 <section id="picture">
     <span class="actionButtons">
-    <button mat-button *ngIf="path" class="button" (click)="undoAction()"><mat-icon>undo</mat-icon></button>
+        <button mat-button *ngIf="path" class="button" (click)="undoAction()"><mat-icon>undo</mat-icon></button>
     </span>
     <div>
     <img *ngIf="path" #car [src]='path' alt="Brak zdjęcia" (click)="putErrImg($event)"/>
