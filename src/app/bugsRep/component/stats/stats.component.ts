@@ -21,9 +21,10 @@ import { SideFormActionService } from '../../service/side-form-action.service';
   ]
 })
 export class StatsComponent implements OnInit, OnDestroy {
-
-  //hande form
   
+  //hande form
+  errorsData: ErrTypes[];
+  injectionsData: Injection[];
   range: FormGroup;
   partToErr: FormGroup;
   date: Date;
@@ -31,8 +32,6 @@ export class StatsComponent implements OnInit, OnDestroy {
   //
   //Templete 1
   dateToErr: FormGroup;
-  errorsData: ErrTypes[];
-  injectionsData: Injection[];
   subTemp1: Subscription;
   dataTemp1: any = null;
   //view: any[] = [700, 400];
@@ -41,6 +40,9 @@ export class StatsComponent implements OnInit, OnDestroy {
   //
   //Template 2
   range1: FormGroup;
+  subTemp2: Subscription;
+  dataTemp2: any = null;
+  yAxisLabel2: string = 'liczba błędów';
   //
   //data for forms - side
   action: boolean;
@@ -76,8 +78,8 @@ export class StatsComponent implements OnInit, OnDestroy {
       end: this.endDate
     });
     this.range1 = this.fb.group({
-      start1: this.date,
-      end1: this.endDate
+      start: this.date,
+      end: this.endDate
     });
     this.dateToErr = this.fb.group({
       range: this.range,
@@ -85,14 +87,14 @@ export class StatsComponent implements OnInit, OnDestroy {
       injType: [null, Validators.required]
     });
     this.partToErr = this.fb.group({
-      range: this.range,
-      carPart: null,
-      errType: null,
-      injType: null
+      range1: this.range1,
+      carPart: [null, Validators.required],
+      errType: [null, Validators.required]
     });
     this.errorsData = errors;
     this.injectionsData = injections;
-    this.subTemp1 = this.service.dataTemp1$.subscribe(dataTemp1 => this.dataTemp1 = dataTemp1)
+    this.subTemp1 = this.service.dataTemp1$.subscribe(dataTemp1 => this.dataTemp1 = dataTemp1);
+    this.subTemp2 = this.service.dataTemp2$.subscribe(dataTemp2 => this.dataTemp2 = dataTemp2);
     this.subscription = this.data.currentAction.subscribe(action => {
       this.action = action;
       if(this.sidenav)
@@ -103,7 +105,9 @@ export class StatsComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(){
     this.subTemp1.unsubscribe();
-    this.dataTemp1 = null;
+    this.dataTemp1 = null;    
+    this.subTemp2.unsubscribe();
+    this.dataTemp2 = null;
   }
   closeForm()
   {
@@ -117,7 +121,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       this.formOpened=true;
     }
   }
-  today()
+  today(chosen: any)
   {
     this.date=new Date();
     this.date.setHours(0);
@@ -129,37 +133,68 @@ export class StatsComponent implements OnInit, OnDestroy {
     this.endDate.setMinutes(59);
     this.endDate.setSeconds(59);
     this.endDate.setMilliseconds(999);
-    this.range.patchValue({
+    chosen.patchValue({
       start: this.date,
       end: this.endDate
     })
   }
-  show(template: number){
-    switch(template){
+  clear(form: FormGroup, data: number){
+    form.reset();
+    switch(data){
       case 1:{
-        let formData = this.dateToErr.value;
-        formData.range.start.setMilliseconds(0);
-        formData.range.start.setSeconds(0);
-        formData.range.start.setMinutes(0);
-        formData.range.start.setHours(0);
-        formData.range.end.setMilliseconds(999);
-        formData.range.end.setSeconds(59);
-        formData.range.end.setMinutes(59);
-        formData.range.end.setHours(23);
-        this.yAxisLabel1=this.service.dateToErr(formData);
-
+        this.dataTemp1=null;
         break;
       }
       case 2:{
-        /*let formData = this..value;
-        formData.range.start.setMilliseconds(0);
-        formData.range.start.setSeconds(0);
-        formData.range.start.setMinutes(0);
-        formData.range.start.setHours(0);
-        formData.range.end.setMilliseconds(999);
-        formData.range.end.setSeconds(59);
-        formData.range.end.setMinutes(59);
-        formData.range.end.setHours(23);*/
+        this.dataTemp2=null;
+        break;
+      }
+    }
+  }
+  show(template: number){
+    switch(template){
+      case 1:{
+        if(this.dateToErr.value.errType!='wtrącenia'){
+          this.dateToErr.value.injType='-';
+          this.dateToErr.patchValue({
+            injType: '-'
+          });
+        }
+        if(this.dateToErr.value.range.start && this.dateToErr.value.range.end && this.dateToErr.value.errType)
+        {
+          this.dateToErr.value.range.start.setMilliseconds(0);
+          this.dateToErr.value.range.start.setSeconds(0);
+          this.dateToErr.value.range.start.setMinutes(0);
+          this.dateToErr.value.range.start.setHours(0);
+          this.dateToErr.value.range.end.setMilliseconds(999);
+          this.dateToErr.value.range.end.setSeconds(59);
+          this.dateToErr.value.range.end.setMinutes(59);
+          this.dateToErr.value.range.end.setHours(23);
+          this.service.dateToErr(this.dateToErr.value);
+          this.yAxisLabel1="Błąd: "+this.dateToErr.value.errType+"; Wtrącenie: "+this.dateToErr.value.injType;
+        }
+        break;
+      }
+      case 2:{
+        if(this.partToErr.value.range1.start && 
+          this.partToErr.value.range1.end && 
+          this.partToErr.value.errType &&
+          this.partToErr.value.errType.length>0 &&
+          this.partToErr.value.carPart &&
+          this.partToErr.value.carPart.length>0)
+        {
+          this.partToErr.value.range1.start.setMilliseconds(0);
+          this.partToErr.value.range1.start.setSeconds(0);
+          this.partToErr.value.range1.start.setMinutes(0);
+          this.partToErr.value.range1.start.setHours(0);
+          this.partToErr.value.range1.end.setMilliseconds(999);
+          this.partToErr.value.range1.end.setSeconds(59);
+          this.partToErr.value.range1.end.setMinutes(59);
+          this.partToErr.value.range1.end.setHours(23);
+          
+          this.service.partToErr(this.partToErr.value);
+          console.log(this.dataTemp2);
+        }
         break;
       }
     }

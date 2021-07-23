@@ -1,9 +1,9 @@
-export interface LinearChartData {
+export interface GroupedChartData {
     name: string,
     series:[
         {
-            value: number,
-            name: string
+            name: string,
+            value: number
         }
     ]
 }
