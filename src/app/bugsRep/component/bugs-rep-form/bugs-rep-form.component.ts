@@ -23,7 +23,7 @@ export class BugsRepFormComponent implements OnInit {
   saved: boolean;
 
   constructor(private fb: FormBuilder, private dateAdapter: DateAdapter<Date>) {
-    this.dateAdapter.setLocale('en-GB');
+    this.dateAdapter.setLocale('pl');
     this.date=new Date();
    }
 /*

@@ -22,19 +22,24 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 export class StatsComponent implements OnInit, OnDestroy {
 
   //hande form
-  dateToErr: FormGroup;
+  
   range: FormGroup;
   partToErr: FormGroup;
   date: Date;
   endDate: Date;
   //
   //Templete 1
+  dateToErr: FormGroup;
   errorsData: ErrTypes[];
   injectionsData: Injection[];
   subTemp1: Subscription;
   dataTemp1: any = null;
   //view: any[] = [700, 400];
   selectedErr: string;
+  yAxisLabel1: string;
+  //
+  //Template 2
+  range1: FormGroup;
   //
   //data for form
   formOpened: boolean = true;
@@ -61,9 +66,14 @@ export class StatsComponent implements OnInit, OnDestroy {
     this.endDate.setMinutes(59);
     this.endDate.setSeconds(59);
     this.endDate.setMilliseconds(59);
+
     this.range = this.fb.group({
       start: this.date,
       end: this.endDate
+    });
+    this.range1 = this.fb.group({
+      start1: this.date,
+      end1: this.endDate
     });
     this.dateToErr = this.fb.group({
       range: this.range,
@@ -71,6 +81,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       injType: [null, Validators.required]
     });
     this.partToErr = this.fb.group({
+      range: this.range,
       carPart: null,
       errType: null,
       injType: null
@@ -124,11 +135,20 @@ export class StatsComponent implements OnInit, OnDestroy {
         formData.range.end.setSeconds(59);
         formData.range.end.setMinutes(59);
         formData.range.end.setHours(23);
-        this.service.dateToErr(formData);
+        this.yAxisLabel1=this.service.dateToErr(formData);
 
         break;
       }
       case 2:{
+        /*let formData = this..value;
+        formData.range.start.setMilliseconds(0);
+        formData.range.start.setSeconds(0);
+        formData.range.start.setMinutes(0);
+        formData.range.start.setHours(0);
+        formData.range.end.setMilliseconds(999);
+        formData.range.end.setSeconds(59);
+        formData.range.end.setMinutes(59);
+        formData.range.end.setHours(23);*/
         break;
       }
     }

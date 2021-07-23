@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { VertBarChartData } from '../bugsRep/component/stats/vert-bar-chart-data';
-import { LinearChartData } from '../bugsRep/component/stats/linear-chart-data';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +13,13 @@ export class StatsService {
 
   constructor() { }
 
-  dateToErr(form: any){
+  dateToErr(form: any): string{
     let data = this.getReports();
+    let dataSend: VertBarChartData[] = [];
     //form.range.start = moment(form.range.start).add(1, 'd').toDate();
     //form.range.end = moment(form.range.end).add(1, 'd').toDate();
-    if(data.length>0)
+    if(data)
     {
-      let dataSend: LinearChartData[] = [];
       const filtered = data.filter(object => {
         let date = new Date(object.date);
         date.setDate(date.getDate()-1);
@@ -30,15 +29,9 @@ export class StatsService {
         object.errType == form.errType &&
         object.errInclusion == form.injType
       });
+      console.log(filtered); 
       const dates=this.getRangeDates(form.range.start, form.range.end);
-      let item: LinearChartData = {
-        name: form.errType+' '+form.injType,
-        series: [{
-          value: 0,
-          name: ''
-        }]
-      };
-      item.series.shift();
+      console.log("cokolwiek: ",dates);
       for(let i=0; i < dates.length; i++)
       {
         const fullFiltered = filtered.filter(item => {
@@ -46,17 +39,17 @@ export class StatsService {
           date.setDate(date.getDate()-1);
           return date.getTime() == dates[i].getTime();
         });
-        const seriesItem = {
-          value: fullFiltered.length,
-          name: dates[i].getDate()+'-'+dates[i].getMonth()+1+'-'+dates[i].getFullYear()
+        const item: VertBarChartData = {
+          name: dates[i].getDate()+'-'+dates[i].getMonth()+1+'-'+dates[i].getFullYear(),
+          value: fullFiltered.length
         }
-        item.series.push(seriesItem);
+        dataSend.push(item);
       }
-      dataSend.push(item);
-      console.log(dataSend);
-      this.subTemp1.next(dataSend);
     }
+    this.subTemp1.next(dataSend);
+    return "Błąd: "+form.errType+"; Wtrącenie: "+form.injType;
   }
+  
   getReports(): any{
     const read = localStorage.getItem('Reports');
     let data = null;
@@ -74,5 +67,17 @@ export class StatsService {
       currDate = moment(currDate).add(1, 'd').toDate();
     }
     return dates;
+  }
+  getDataInTime(start: Date, end: Date)
+  {
+    let data = this.getReports();
+    const filtered = data.filter(object => {
+      let date = new Date(object.date);
+      date.setDate(date.getDate()-1);
+
+      return date.getTime() >= start.getTime() && 
+      date.getTime() <= end.getTime()
+    });
+    return filtered;
   }
 }
