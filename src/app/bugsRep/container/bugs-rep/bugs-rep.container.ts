@@ -46,7 +46,7 @@ export class BugsRepContainer implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.activetedLink = 0;
-    this.subscription = this.data.currentAction.subscribe(action => this.action = action)
+    this.subscription = this.data.currentAction.subscribe(action => this.action = action);
   }
   ngOnDestroy(): void{
     this.subscription.unsubscribe();

@@ -9,6 +9,7 @@ import { Injection } from '../../4form/errInjection.interface';
 import { StatsService } from 'src/app/service/stats.service';
 import { Subscription } from 'rxjs';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { SideFormActionService } from '../../service/side-form-action.service';
 
 @Component({
   selector: 'app-stats',
@@ -41,7 +42,9 @@ export class StatsComponent implements OnInit, OnDestroy {
   //Template 2
   range1: FormGroup;
   //
-  //data for form
+  //data for forms - side
+  action: boolean;
+  subscription: Subscription;
   formOpened: boolean = true;
 
   //
@@ -51,7 +54,8 @@ export class StatsComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder, 
     private dateAdapter: DateAdapter<Date>,
-    private service: StatsService) {
+    private service: StatsService,
+    private data: SideFormActionService) {
     this.dateAdapter.setLocale('pl');
   }
 
@@ -89,6 +93,13 @@ export class StatsComponent implements OnInit, OnDestroy {
     this.errorsData = errors;
     this.injectionsData = injections;
     this.subTemp1 = this.service.dataTemp1$.subscribe(dataTemp1 => this.dataTemp1 = dataTemp1)
+    this.subscription = this.data.currentAction.subscribe(action => {
+      this.action = action;
+      if(this.sidenav)
+      {
+        this.closeForm();
+      }
+    });
   }
   ngOnDestroy(){
     this.subTemp1.unsubscribe();
