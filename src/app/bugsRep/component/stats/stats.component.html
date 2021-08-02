@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sideNav">
     <mat-sidenav #sidenav opened class="sidenav__left" [mode]="isMobile ? 'over' : 'side'" disableClose>
-        <h2><mat-icon>assignment</mat-icon> Formularz</h2>
+        <h2><mat-icon>assignment</mat-icon> Wybierz wzór wykresu</h2>
         <div  class = "sideForm">
         <!-- Templete 1 -->
         <mat-card class="cardForm">
@@ -39,7 +39,7 @@
                   <mat-option *ngFor="let inj of injectionsData" [value]="inj.name">{{inj.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
-        <button mat-raised-button class="submitButton" (click)="show(1)"><mat-icon>brush</mat-icon> Wyświetl</button>
+        <button mat-raised-button class="submitButton" (click)="show(1)"><mat-icon>stacked_bar_chart</mat-icon> Wyświetl</button>
         <span class="fillFreeSpaceVertical"></span>
         <button mat-raised-button (click)="clear(dateToErr, 1)"><mat-icon>clear</mat-icon> Wyczyść</button>
         </form>
@@ -102,7 +102,7 @@
                   <mat-option *ngFor="let err of errorsData" [value]="err.name">{{err.name}}</mat-option>
                 </mat-select>
               </mat-form-field><br/>
-          <button mat-raised-button class="submitButton" (click)="show(2)"><mat-icon>brush</mat-icon> Wyświetl</button>
+          <button mat-raised-button class="submitButton" (click)="show(2)"><mat-icon>stacked_bar_chart</mat-icon> Wyświetl</button>
           <span class="fillFreeSpaceVertical"></span>
           <button mat-raised-button (click)="clear(partToErr, 2)"><mat-icon>clear</mat-icon> Wyczyść</button>
         </form>
@@ -129,7 +129,7 @@
             <mat-error *ngIf="range2.controls.end.hasError('matEndDateInvalid')">Nieprawidłowa data końcowa</mat-error>
           </mat-form-field><br/>
           <button mat-raised-button class="submitButton" class="todayBtn" (click)="today(range2)">Dziś</button><br/>
-          <button mat-raised-button class="submitButton" (click)="show(3)"><mat-icon>brush</mat-icon> Wyświetl</button>
+          <button mat-raised-button class="submitButton" (click)="show(3)"><mat-icon>stacked_bar_chart</mat-icon> Wyświetl</button>
           <span class="fillFreeSpaceVertical"></span>
           <button mat-raised-button (click)="clear(partToErr, 3)"><mat-icon>clear</mat-icon> Wyczyść</button>
         </form>
@@ -148,6 +148,9 @@
     <!-- TEMPLATE 1-->
     <mat-grid-list cols="1" rowHeight="3:1" class="charts">
     <mat-grid-tile *ngIf="dataTemp1">
+      <mat-card>
+        <mat-card-title>Pierdu smierdu</mat-card-title>
+        <mat-card-content>
     <ngx-charts-bar-vertical 
       [results]="dataTemp1"
       [xAxis]='true'
@@ -158,6 +161,8 @@
       [yAxisLabel]="yAxisLabel1"
       [roundEdges]='false'>
     </ngx-charts-bar-vertical>
+    </mat-card-content>
+  </mat-card>
   </mat-grid-tile>
     <!-- TEMPLATE 2-->
     <mat-grid-tile *ngIf="dataTemp2">

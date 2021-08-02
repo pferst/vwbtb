@@ -139,6 +139,7 @@ export class StatsComponent implements OnInit, OnDestroy {
     this.dataTemp2 = null;    
     this.subTemp3.unsubscribe();
     this.dataTemp3 = null;
+    this.subscription.unsubscribe();
   }
   closeForm()
   {

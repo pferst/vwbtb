@@ -7,6 +7,7 @@ import { StatsComponent } from './bugsRep/component/stats/stats.component';
 import { MainViewContainer } from './bugsRep/container/main-view/main-view.container';
 import { AuthguardGuard } from './guard/authguard.guard';
 import { AuthService } from './service/auth.service';
+import { HistoryComponent } from './bugsRep/component/history/history.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginContainer },
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'stats',
         component: StatsComponent
+      },
+      {
+        path: 'hist',
+        component: HistoryComponent
       }
     ]
   },

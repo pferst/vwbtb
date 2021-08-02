@@ -1,0 +1,116 @@
+<mat-sidenav-container class="sideNav">
+    <mat-sidenav class="sidenav__left" #sidenav opened [mode]="isMobile ? 'over' : 'side'" disableClose>
+        <h2><mat-icon>assignment</mat-icon> Wybierz motyl</h2>
+<form [formGroup]="form" class = "sideForm">
+    <!-- Space-->
+    <mat-card>
+      <mat-card-title><mat-icon>timeline</mat-icon> Obszar</mat-card-title>
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Wybierz etap procesu</mat-label>
+          <mat-select formControlName="procStage">
+            <mat-option></mat-option>
+            <mat-option value="bc">BC/CC</mat-option>
+            <mat-option value="fuler">Fuler</mat-option>
+            <mat-option value="pvc">PVC</mat-option>
+            <mat-option value="vbh">VBH/KTL</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card><br/>
+    <!-- Date-->
+    <mat-card>
+    <mat-card-content>
+        <mat-card-title><mat-icon>calendar_today</mat-icon> Przedział dat</mat-card-title>
+    <mat-form-field appearance="fill">
+      <mat-label>Wybierz datę początkową i końcową</mat-label>
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+        <input matStartDate formControlName="start" placeholder="data początkowa">
+        <input matEndDate formControlName="end" placeholder="data końcowa">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker touchUi #picker></mat-date-range-picker>
+    
+      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Nieprawidłowa data początkowa</mat-error>
+      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Nieprawidłowa data końcowa</mat-error>
+    </mat-form-field><br/>
+    <button mat-raised-button class="submitButton" class="submitButton" (click)="today(range)">Dziś</button>
+      </mat-card-content>
+    </mat-card><br/>
+    <!-- Info about car-->
+    <mat-card>
+      <mat-card-title><mat-icon> directions_car</mat-icon> Auto</mat-card-title>
+      <mat-card-content>
+        <!-- Color -->
+        <div> Wybierz kolor pojazdu</div>
+        <mat-form-field appearance="fill">
+          <mat-label>Wybierz kolor pojazdu</mat-label>
+          <mat-select formControlName="carColor">
+            <mat-option value="008">008</mat-option>
+            <mat-option value="100">100</mat-option>
+            <mat-option value="B4B4">B4B4</mat-option>
+            <mat-option value="8E8E">8E8E</mat-option>
+            <mat-option value="4B4B">4B4B</mat-option>
+            <mat-option value="X3X3">X3X3</mat-option>
+            <mat-option value="V7V7">V7V7</mat-option>
+            <mat-option value="E3E3">E3E3</mat-option>
+            <mat-option value="2T2T">2T2T</mat-option>
+            <mat-option value="0P0P">0P0P</mat-option>
+            <mat-option value="KTL">KTL</mat-option>
+            <mat-option value="PVC">PVC</mat-option>
+          </mat-select>
+        </mat-form-field><br/>
+        <!-- Type-->
+        <div>Wybierz rodzaj pojazdu</div>
+        <mat-form-field appearance="fill">
+          <mat-label>Wybierz rodzaj pojazdu</mat-label>
+          <mat-select formControlName="carType">
+            <mat-option></mat-option>
+            <mat-option value="Doka">Doka</mat-option>
+            <mat-option value="Kasten">Kasten</mat-option>
+            <mat-option value="Kombi">Kombi</mat-option>
+          </mat-select>
+        </mat-form-field><br/>
+        <!-- Side -->
+        <div>Wybierz stronę pojazdu</div>
+        <mat-radio-group class = "tp-radio-group" formControlName="carSide">
+          <mat-radio-button class = "tp-radio-button" value="wew">Wewnętrzna</mat-radio-button>
+          <mat-radio-button class = "tp-radio-button" value="zew">Zewnętrzna</mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card><br/>
+  <button mat-raised-button (click)="clear()"><mat-icon>clear</mat-icon> Wyczyść</button>
+  <span class="fillMoreSpaceVertical"></span>
+  <button mat-raised-button type="submit" [disabled]="!form.valid" class="submitButton" (click)="search()"><mat-icon>search</mat-icon> Szukaj</button>
+  </form>
+  <mat-divider></mat-divider>
+<form *ngIf="pins" [formGroup]="carID" class = "sideForm">
+  <!-- Model -->
+  <mat-card>
+   <mat-card-title>Wybierz pojazd</mat-card-title>
+   <mat-card-content>
+  <mat-form-field appearance="fill">
+    <mat-label>PIN pojazdu</mat-label>
+    <mat-select placeholder="PIN pojazdu" formControlName="id">
+      <mat-option *ngFor="let pin of pins" [value]="pin">{{pin}}</mat-option>
+    </mat-select>
+  </mat-form-field><br/>
+</mat-card-content>
+  </mat-card><br/>
+  <button mat-raised-button type="submit" [disabled]="!form.valid" class="submitButton" (click)="show()"><mat-icon>image</mat-icon> Wyświetl</button>
+</form>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button class="btn" mat-button (click)="closeForm()">
+        <mat-icon *ngIf='formOpened'>keyboard_arrow_left</mat-icon>
+        <mat-icon *ngIf='!formOpened'>keyboard_arrow_right</mat-icon>
+    </button>
+    <section id="picture">
+        <div>
+        <img #car [src]='imgPath'/>
+        <img *ngFor="let point of points" [src]='point.path' class="points" [ngStyle]="{'top.px': point.y, 'left.px': point.x, 'width.px': point.pointSizeX, 'height': point.pointSizeY}"/><!-- [src]='err.path'-->
+        </div>
+        <h3 *ngIf="!path" class="center">Aby wyświetlić motyl należy wypełnić formularz</h3>
+    </section>
+</mat-sidenav-content>
+</mat-sidenav-container>

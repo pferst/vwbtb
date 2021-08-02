@@ -5,5 +5,5 @@
     <span class="fillFreSpace" *ngIf="!isMobile"></span>
     <app-tabs [links]="links" (tabEvent)="transferToContainer($event)"></app-tabs>
     <span class="fillFreSpace" *ngIf="!isMobile"></span>
-    <button class="btn" mat-icon-button (click)="logout()"><mat-icon>logout</mat-icon>Wyloguj się</button>
+    <button class="btn" mat-icon-button (click)="logout()"><mat-icon>logout</mat-icon><span *ngIf="!isMobile">Wyloguj się</span></button>
 </mat-toolbar>

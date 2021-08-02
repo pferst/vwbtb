@@ -27,12 +27,20 @@ export class BugsRepContainer implements OnInit, OnDestroy {
     {
       name: 'Zgłaszanie błędów',
       link: '/',
+      shortName: 'Zgł...',
       index: 0
     },
     {
       name: 'Statystyki',
       link: '/stats',
+      shortName: 'Stat...',
       index: 1
+    },
+    {
+      name: 'histoira zgłoszeń',
+      link: '/hist',
+      shortName: 'Hist...',
+      index: 2
     }
   ];
   activetedLink: number;

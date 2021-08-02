@@ -32,6 +32,7 @@ import { DialogLogoutComponent } from './dialog-logout/dialog-logout.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDividerModule} from '@angular/material/divider';
+import { HistoryComponent } from './bugsRep/component/history/history.component';
 
 
 
@@ -48,7 +49,8 @@ import {MatDividerModule} from '@angular/material/divider';
     StatsComponent,
     MainViewContainer,
     SnackBarComponent,
-    DialogLogoutComponent
+    DialogLogoutComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
